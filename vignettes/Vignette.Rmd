@@ -1,6 +1,12 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "Vignette"
+author: "Mike Sportiello"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r}
@@ -173,9 +179,4 @@ for (w in uniquemepairings) {
 }
 ggarrange(plotlist = plotlist)
 ```
-```{r}
 
-```
-
-
-### FIN ###
