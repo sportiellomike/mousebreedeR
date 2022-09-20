@@ -29,7 +29,7 @@ canwegetalltheallelesfromonecross <-
     }
     genecols <- c()
     for (t in colnames(x)) {
-      if (isTRUE(any(x[t] == genotypevals))) {
+      if (isTRUE(any(x[t] == genotypevalschar))) {
         genecols <- c(genecols, t)
       }
     }
