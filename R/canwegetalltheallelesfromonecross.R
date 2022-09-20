@@ -12,7 +12,6 @@
 
 canwegetalltheallelesfromonecross <-
   function(x, desiredvector = desiredvec) {
-    encodegenevalues()
     newdesiredvector <- c()
     for (v in desiredvector) {
       ifelse(
