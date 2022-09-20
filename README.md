@@ -17,9 +17,13 @@ The attached vignette walks the user through all of mousebreedeR's functionality
 To install, go to Rstudio or the R command line and run the following code.
 
 `install.packages('devtools')`
+
 `library(devtools)`
+
 `install_github('sportiellomike/mousebreedeR',build_vignettes = T)`
+
 `library(mousebreedeR)`
+
 
 # Other
 Any questions? Don't hesitate to reach out: michael_sportiello@urmc.rochester.edu.
