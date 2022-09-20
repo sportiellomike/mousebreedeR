@@ -64,7 +64,7 @@ meiosisoutput<-engageinmeiosis(exampleData)
 head(meiosisoutput) # as you can see: some of these have an impossible number of alleles (0.5 copies). The next function will fix that by generating gametes that have either 0 or 1 copies of the allele like in real meiosis.
 
 compilegametesoutput<-compilegametes(meiosisoutput)
-head(compilegametesousput)
+head(compilegametesoutput)
 ```
 
 ```{r}
