@@ -2,29 +2,21 @@
 % Please edit documentation in R/spermandeggs.R
 \name{spermandeggs}
 \alias{spermandeggs}
-\title{fluximplied}
+\title{spermandeggs}
 \usage{
 spermandeggs(x, sex = "sex")
 }
 \arguments{
-\item{inputdat}{what you are using as your input data, either a dataframe with genes as the rownames, a column for LFC, and a column for padj values}
+\item{x}{the outpout of compilegametes()}
 
-\item{species}{either mus or hsa}
-
-\item{geneformat}{either ENTREZ or symbol}
-
-\item{inputformat}{either df or vector}
-
-\item{padjcolname}{the name of the column in your dataframe, if applicable, that stores the padj values}
-
-\item{pcutoff}{the alpha threshold for your padjustadjust}
+\item{sex}{the column name in your compilegametesoutput that refers to sex.}
 }
 \value{
-If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+The possible sperm and eggs you could produce.
 }
 \description{
-Pathway analysis of DESeq2 result or character vector of differentially expressed genes which also plots results.
+Pulls out sperm and eggs from the gametes created by compilegametes.
 }
 \examples{
-spermandeggs()
+spermandeggs(x=compilegametesoutput,sex='sex')
 }

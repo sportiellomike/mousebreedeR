@@ -2,29 +2,21 @@
 % Please edit documentation in R/canwegetalltheallelesfromonecross.R
 \name{canwegetalltheallelesfromonecross}
 \alias{canwegetalltheallelesfromonecross}
-\title{fluximplied}
+\title{canwegetalltheallelesfromonecross}
 \usage{
 canwegetalltheallelesfromonecross(x, desiredvector = desiredvec)
 }
 \arguments{
-\item{inputdat}{what you are using as your input data, either a dataframe with genes as the rownames, a column for LFC, and a column for padj values}
+\item{x}{the output of fertilize()}
 
-\item{species}{either mus or hsa}
-
-\item{geneformat}{either ENTREZ or symbol}
-
-\item{inputformat}{either df or vector}
-
-\item{padjcolname}{the name of the column in your dataframe, if applicable, that stores the padj values}
-
-\item{pcutoff}{the alpha threshold for your padjustadjust}
+\item{desiredvector}{a character vector of the desired genotype}
 }
 \value{
 If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
 }
 \description{
-Pathway analysis of DESeq2 result or character vector of differentially expressed genes which also plots results.
+This function will tell you if multiple crosses will be required to get the desired mouse.
 }
 \examples{
-canwegetalltheallelesfromonecross()
+canwegetalltheallelesfromonecross(x=fertilizeoutput,desiredvector=desiredvec)
 }

@@ -4,7 +4,7 @@
 #' @param x the output of the pointsperpup function
 #' @param desiredvector a character vector of the genotype you want to get to
 #'
-#' @return If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+#' @return the crosses that produce the highest probability of desired pup or pups that are closest to the desired genotype.
 #' @export
 #'
 #' @examples

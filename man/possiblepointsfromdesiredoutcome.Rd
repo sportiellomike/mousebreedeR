@@ -2,29 +2,19 @@
 % Please edit documentation in R/possiblepointsfromdesiredoutcome.R
 \name{possiblepointsfromdesiredoutcome}
 \alias{possiblepointsfromdesiredoutcome}
-\title{fluximplied}
+\title{possiblepointsfromdesiredoutcome}
 \usage{
 possiblepointsfromdesiredoutcome(desiredvector = desiredvec)
 }
 \arguments{
-\item{inputdat}{what you are using as your input data, either a dataframe with genes as the rownames, a column for LFC, and a column for padj values}
-
-\item{species}{either mus or hsa}
-
-\item{geneformat}{either ENTREZ or symbol}
-
-\item{inputformat}{either df or vector}
-
-\item{padjcolname}{the name of the column in your dataframe, if applicable, that stores the padj values}
-
-\item{pcutoff}{the alpha threshold for your padjustadjust}
+\item{desiredvector}{character vector of desired genotype.}
 }
 \value{
-If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+The number of possible points your desired pup is worth.
 }
 \description{
-Pathway analysis of DESeq2 result or character vector of differentially expressed genes which also plots results.
+Calculates how many points any pup could be worth based on how many points your desired pup could be worth.
 }
 \examples{
-possiblepointsfromdesiredoutcome()
+possiblepointsfromdesiredoutcome(desiredvector = desiredvec)
 }

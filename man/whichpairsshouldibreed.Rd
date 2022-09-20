@@ -12,7 +12,7 @@ whichpairsshouldibreed(x = pointsperpupoutput, desiredvector = desiredvec)
 \item{desiredvector}{a character vector of the genotype you want to get to}
 }
 \value{
-If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+the crosses that produce the highest probability of desired pup or pups that are closest to the desired genotype.
 }
 \description{
 This function assists the user in deciding which breeding scheme will produce the result most likely to give them the mouse of their preferred genotype

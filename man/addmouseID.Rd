@@ -2,29 +2,19 @@
 % Please edit documentation in R/addmouseID.R
 \name{addmouseID}
 \alias{addmouseID}
-\title{fluximplied}
+\title{addmouseID}
 \usage{
 addmouseID(x)
 }
 \arguments{
-\item{inputdat}{what you are using as your input data, either a dataframe with genes as the rownames, a column for LFC, and a column for padj values}
-
-\item{species}{either mus or hsa}
-
-\item{geneformat}{either ENTREZ or symbol}
-
-\item{inputformat}{either df or vector}
-
-\item{padjcolname}{the name of the column in your dataframe, if applicable, that stores the padj values}
-
-\item{pcutoff}{the alpha threshold for your padjustadjust}
+\item{x}{dataframe to add column to.}
 }
 \value{
-If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+The same data frame with mouseID column.
 }
 \description{
-Pathway analysis of DESeq2 result or character vector of differentially expressed genes which also plots results.
+Adds mouseID to the original dataframe provided
 }
 \examples{
-addmouseID(iris)
+addmouseID(exampleData.)
 }

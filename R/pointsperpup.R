@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' pointsperpup()
+#' pointsperpup(x=summarizepotentialpupoutput,desiredvector=desiredvec)
 
 pointsperpup<-function(x,desiredvector=desiredvec){
   genecols <- c()
