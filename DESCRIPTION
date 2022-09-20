@@ -20,3 +20,5 @@ Imports:
     gtools,
     reshape2,
     viridis
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
