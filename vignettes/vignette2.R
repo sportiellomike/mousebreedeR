@@ -1,0 +1,240 @@
+#mousebreedeR
+library(dqrng)
+library(dplyr)
+library(gtools)
+library(tidyverse)
+library(ggplot2)
+library(reshape2)
+library(viridis)
+library(ggpubr)
+Rfunctionstoload<-list.files(path = './R/',full.names = T)
+lapply(Rfunctionstoload,source)
+`%!in%` <- Negate(`%in%`)
+# make example df
+mouse1 <- c(0, 0, 0, 1, 0, 0, 0, 1)
+mouse2 <- c(0, 0, 1, 0, 0, 0, 1, 0)
+mouse3 <- c(0, 1, 0, 0, 0, 1, 0, 0)
+mouse4 <- c(1, 0, 0, 0, 1, 0, 0, 0)
+mouse5 <- c('M', 'M', 'M', 'M','F', 'F', 'F', 'F')
+df <- data.frame(mouse1, mouse2, mouse3, mouse4, mouse5)
+colnames(df) <- c(paste0('gene', 2:dim(df)[2] - 1), 'sex')
+head(df)
+#
+
+
+# set ggplothemes
+theme_set(
+  theme(
+    axis.text = element_text(size = 8),
+    axis.title = element_text(size = 8),
+    strip.text = element_text(size = 8),
+    axis.text.x = element_text(angle = 90),
+    legend.position = 'none',
+    # strip.text.x = element_text(size = 8,margin = margin(.1, 0, .1, 0, "cm")),
+    legend.text = element_text(size = 7),
+    legend.title = element_text(size = 7),
+    # legend.position = 'bottom',panel.border=element_blank(),
+    panel.background = element_blank(),
+    panel.grid.major = element_line(color = 'light grey')
+  )
+)
+
+# rename df
+exampleData<-df
+head(exampleData) # look at the top few rows
+
+# first let's look at what happens when each mouse undergoes meiosis
+meiosisoutput<-engageinmeiosis(exampleData)
+head(meiosisoutput) # as you can see: some of these have an impossible number of alleles (0.5 copies). The next function will fix that by generating gametes that have either 0 or 1 copies of the allele like in real meiosis.
+
+compilegametesousput<-compilegametes(meiosisoutput)
+head(compilegametesousput)
+
+# now we can separate them into sperm and eggs
+spermandeggs(x = compilegametesousput,sex = 'sex')
+head(sperm)
+head(eggs)
+
+# now we can actually have sex
+fertilizeoutput<-fertilize(malegametes = sperm,
+          femalegametes = eggs)
+
+head(fertilizeoutput) # as you can see, we have genotypes, and we recorded who the mom and dad were. We also have a term called momdad that essentially saves that crossing (ie it pastes together the mom and the dad)
+
+# next we have two ways of summarizing the outcome of the crossing.
+# the first records the distribution of each genotype per momdad (ie per cross) and per gene
+summarizefertilizationoutput<-summarizefertilization(fertilizeoutput)
+head(summarizefertilizationoutput)
+
+# the next way to summarize the data is probably more useful, and that's to generate the probability that each potential pup is actually born. Included in this summary are the probabilities a pup of that genotype is not born given a litter size from 1-10 pups. For example, "notthatgenotypefivepup" column gives the probability that, if 5 pups are born, what is the probability that none of them are that genotype? You can subtract those columns from 1 to get the probability that at least one pup is that genotype.
+summarizepotentialpupoutput<-summarizepotentialpups(fertilizeoutput)
+head(summarizepotentialpupoutput)
+engageinmeiosis(summarizepotentialpupoutput)
+
+
+# let's set a goal
+head(fertilizeoutput)
+desiredvec<-c('homopos', 'homopos', 'homopos', 'homopos') # this desiredvec of genotypes needs to be the same length as the number of gene columns you have in your fertilizeoutput (which will be the same as what you supplied in the beginning to this walkthrough)
+
+# desiredvector<-c('het', 'het', 'het', 'het')
+
+# first let's see if we can even put all the alleles we want (not necessarily getting 2 alleles if that's what you want, but getting at least one in)
+canwegetalltheallelesfromonecross(x = fertilizeoutput,desiredvector = desiredvec)
+
+# next we can score each pup. The maximum total score for each pup is 100*(the number of loci or gene columns)
+# Getting the genotype you want is worth 100, and getting a het if you want a homozygous is worth 50.
+# normalized points are the points the pup earned divided by the total possible points it could have achieved.
+pointsperpupoutput<-pointsperpup(x = summarizepotentialpupoutput,desiredvector = desiredvec)
+head(pointsperpupoutput)
+
+whichpairstobreed<-whichpairsshouldibreed(x=pointsperpupoutput,desiredvector = desiredvec)
+whichpairstobreed
+
+
+x<-df
+iteratebreeding<-function(x,desiredvector=desiredvec){
+  listoutputforiteratebreeding<-list()
+  # head(fertilizeoutput)
+
+
+
+  meiosisoutput<-engageinmeiosis(x)
+  head(meiosisoutput)
+  compilegametesousput<-compilegametes(meiosisoutput)
+  head(compilegametesousput)
+
+
+  spermandeggs(x = compilegametesousput,sex = 'sex')
+  spermold<-sperm
+  eggsold<-eggs
+
+  fertoutputthing<-fertilize(malegametes = sperm,
+                             femalegametes = eggs)
+
+  head(fertilizeoutput)
+
+  listoutputforiteratebreeding[[length(listoutputforiteratebreeding) + 1]] <- fertoutputthing
+  ##
+
+  x<-fertoutputthing
+
+  meiosisoutput<-engageinmeiosisiterate(x)
+  head(meiosisoutput)
+  compilegametesousput<-compilegametes(meiosisoutput)
+
+  head(compilegametesousput)
+  malecompilegametesousput<-compilegametesousput
+  malecompilegametesousput$sex<-'M'
+  femalecompilegametesousput<-compilegametesousput
+  femalecompilegametesousput$sex<-'F'
+  compilegametesousput<-rbind(malecompilegametesousput,femalecompilegametesousput)
+
+
+
+  spermandeggs(x = compilegametesousput,sex = 'sex')
+  head(sperm)
+  head(spermold)
+
+  sperm<-bind_rows(sperm,spermold)
+  eggs<-bind_rows(eggs,eggsold)
+
+
+
+  fertoutputthing<-fertilize(malegametes = sperm,
+                             femalegametes = eggs)
+
+  head(fertilizeoutput)
+
+  listoutputforiteratebreeding[[length(listoutputforiteratebreeding) + 1]] <- fertoutputthing
+  ##
+
+  x<-fertoutputthing
+
+  meiosisoutput<-engageinmeiosisiterate(x)
+  head(meiosisoutput)
+  compilegametesousput<-compilegametes(meiosisoutput)
+
+  head(compilegametesousput)
+  malecompilegametesousput<-compilegametesousput
+  malecompilegametesousput$sex<-'M'
+  femalecompilegametesousput<-compilegametesousput
+  femalecompilegametesousput$sex<-'F'
+  compilegametesousput<-rbind(malecompilegametesousput,femalecompilegametesousput)
+
+
+
+  spermandeggs(x = compilegametesousput,sex = 'sex')
+  head(sperm)
+  head(spermold)
+
+  sperm<-bind_rows(sperm,spermold)
+  eggs<-bind_rows(eggs,eggsold)
+
+
+
+  fertoutputthing<-fertilize(malegametes = sperm,
+                             femalegametes = eggs)
+
+  head(fertilizeoutput)
+
+  listoutputforiteratebreeding[[length(listoutputforiteratebreeding) + 1]] <- fertoutputthing
+
+}
+
+
+# visualizations
+# You may want to actually visualize this data, which you can do in some ways we recommend below.
+
+# first we wrangle the data a bit by melting it
+meltsummarizefertoutput<-melt(summarizefertilizationoutput,
+                              id.vars = c('gene','momdad'),
+                              measure.vars = c('freqhomoneg','freqhet','freqhomopos'),
+                              variable.name = 'genotype',
+                              value.name = 'frequency'
+)
+meltsummarizefertoutput$percent<-(meltsummarizefertoutput$frequency)*100 # we calculate percent from the frequency
+uniquemeltgenes<-unique(meltsummarizefertoutput$gene) # we look at the unique genes you gave earlier for plotting
+
+rm(plotlist) # we remove this from your environment to make sure the list is empty before putting more things into it
+plotlist<-list() # we make a new list
+
+# this chunk of code will plot separate plots for each gene, and show you the distribution of each genotype (homoneg, het, or homopos) for each crossing
+for (w in uniquemeltgenes) {
+  subsetmelt<-subset(meltsummarizefertoutput,meltsummarizefertoutput$gene==w)
+  print(subsetmelt)
+  plot<-ggplot(subsetmelt)+geom_col(aes(y=percent,x=genotype,fill=genotype))+
+    facet_wrap(~momdad)+
+    scale_fill_viridis(labels=c("freqhomoneg" = "HomozygousNeg", "freqhet" = "Heterozygous",
+                                "freqhomopos" = "HomozygousPos"),discrete = T,end=.8)+
+    ggtitle(w)+
+    theme(axis.text.x = element_text(angle=90),
+          plot.title = element_text(hjust = 0.5))
+
+  plotlist[[length(plotlist) + 1]] <- plot
+
+}
+plotlist[1] # we can peek at the first gene by calling the first element of the list
+ggarrange(plotlist = plotlist) # depending on your number of crosses, this plot may be huge, and it may make more sense to look at each element of the list individually as shown in one line above.
+
+# this next plot will do the same thing as above plot, but instead of making separate plots per gene, you can make separate plots per cross, which may be easier to read.
+
+rm(plotlist) # we remove this from your environment to make sure the list is empty before putting more things into it
+plotlist<-list() # we make a new list
+uniquemepairings<-unique(meltsummarizefertoutput$momdad) # pull the unique pairings we have
+for (w in uniquemepairings) {
+  subsetmelt<-subset(meltsummarizefertoutput,meltsummarizefertoutput$momdad==w)
+  print(subsetmelt)
+  plot<-ggplot(subsetmelt)+geom_col(aes(y=percent,x=genotype,fill=genotype))+
+    facet_wrap(~gene)+
+    scale_x_discrete(labels=c("freqhomoneg" = "HomozygousNeg", "freqhet" = "Heterozygous",
+                              "freqhomopos" = "HomozygousPos"))+
+    scale_fill_viridis(discrete = T,end=.8)+
+    ggtitle(w)+
+    theme(axis.text.x = element_text(angle=90),
+          plot.title = element_text(hjust = 0.5))
+
+  plotlist[[length(plotlist) + 1]] <- plot
+
+}
+ggarrange(plotlist = plotlist)
+### FIN ###
