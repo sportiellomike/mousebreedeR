@@ -1,15 +1,12 @@
 ---
-title: 'Fluximplied: A novel approach integrates rate limiting steps and differential expression for pathway analysis'
+title: 'MousebreedeR: A novel software to assist in the design of mouse breeding strategies for complex genotypes'
 tags:
-  - immunometabolism
-  - pathway analysis
-  - metabolomics
-  - metabolism
-  - flux
+  - breeding
+  - mouse
+  - colony management
 authors:
-  - name: Mike Sportiello MS
+  - name: Mike Sportiello PhD
     orcid: 0000-0003-1690-8702
-    equal-contrib: true
     affiliation: "1, 2" # (Multiple affiliations must be quoted)
   - name: Adam Geber
     orcid: 0000-0003-3022-0525
