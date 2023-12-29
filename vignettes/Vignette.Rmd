@@ -115,7 +115,6 @@ pointsperpupoutput<-pointsperpup(x = summarizepotentialpupoutput,desiredvector =
 head(pointsperpupoutput)
 
 whichpairstobreed<-whichpairsshouldibreed(x=pointsperpupoutput,desiredvector = desiredvec)
-whichpairstobreed
 ```
 
 ```{r}

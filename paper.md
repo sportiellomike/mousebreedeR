@@ -1,34 +1,16 @@
 ---
-title: 'MousebreedeR: A novel software to assist in the design of mouse breeding strategies for complex genotypes'
+title: 'MousebreedeR: A novel software to assist in the design of mouse breeding strategies for complex genotypes of experimental organisms'
 tags:
   - breeding
   - mouse
+  - experimental organism
   - colony management
 authors:
   - name: Mike Sportiello PhD
     orcid: 0000-0003-1690-8702
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
-  - name: Adam Geber
-    orcid: 0000-0003-3022-0525
-    equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
-    affiliation: "1, 2"
-  - name: Rohith Palli MD/PhD
-    orcid: 0000-0001-7252-4266
-    affiliation: 2
-  - name: A Karim Embong MS
-    orcid: 0000-0002-7224-4640
-    affiliation: 1
-  - name: Nathan G. Laniewski
-    orcid: #
-    affiliation: 1
-  - name: Emma C. Reilly PhD
-    orcid: #
-    affiliation: 3
-  - name: Kris Lambert Emo
-    orcid: #
-    affiliation: 1
-  - name: David J. Topham MS/PhD
     corresponding: true
+    affiliation: "1, 2" # (Multiple affiliations must be quoted)
+  - name: David J. Topham MS/PhD
     orcid: 0000-0002-9435-8673
     affiliation: 1
 
@@ -37,38 +19,26 @@ affiliations:
    index: 1
  - name: Medical Scientist Training Program, University of Rochester Medical Center, Rochester, NY 14642, USA
    index: 2
- - name: Independent Researcher, Rochester, NY 14642, USA
-   index: 3
 
-date: 21 September 2022
+date: 28 December 2023
 
 bibliography: paper.bib
 ---
 
 # Summary
 
-Traditional gene set enrichment analysis remains among the most common methods to perform rigorous pathway analyses of large omics datasets. While useful for many applications, one common situation where it is less so is the metabolic profiling of bulk omics datasets. Rate limiting steps (RLSs) in more linear pathways are the main determinant of flux, but differential expression of the enzymes that catalyze these steps is not usually differentially weighted as compared to non-RLSs in pathway analysis. `fluximplied` was built to perform pathway analysis with rate limiting steps in mind to assess the implied flux through a number of well validated metabolic pathways. A database of rate limiting steps and their associated pathway was constructed. Unlike traditional approaches to pathway analysis, it specifically queries a database of RLSs in order to infer flux through canonical metabolic pathways.
+With the advent of gene editing playing a regular role in science, the need to get the appropriate allele at each respective locus in a model organism is now common. Instead of simple "knockout" vs "wildtype" mouse experiments for example, it is common for there to be a gene of interest, another gene to mark cells of a certain phenotype, a cre expression locus, and more. While it is often obvious how to efficiently breed experimental organisms to obtain one locus of interest, once three or more loci are involved this becomes difficult to assess. MousebreedeR is a free and open source command line R package that takes desired mouse genotypes and as well as the mouse genotypes the user already has on hand as inputs, and delivers efficient breeding schema to the user. In addition, it gives the user probabilities of each potential genotype along the way.
 
 # Statement of need
 
-Pathway analysis is a method for characterizing biology at the systems level which generally presumes that the regulation of a single element (e.g. transcripts in RNA sequencing (RNAseq)) is less important than that of the pathway of interest as a whole. Traditional gene set enrichment analysis (GSEA) uses a list of differentially expressed transcripts (i.e. upregulated or downregulated) to assess if transcripts of a particular pathway are overrepresented in those lists. For example, if all elements of a pathway for _T cell killing_ were upregulated but one, most would take this to be a biologically meaningful finding even though one element is missing. Pathway analysis by gene set enrichment analysis (GSEA), where enrichment of a predefined functional set of genes (_T cell killing_ genes, for example) within a set of user-supplied genes (such as a list of differentially expressed genes from an RNAseq experiment), is assessed using the hypergeometric test.
+While obtaining a litter of full knockout mice from one WT/WT parent and one knockout/knockout parent is straightforward, this is not the case for when one has 4 loci in 4 separate mice of a variety of sexes. Furthermore, no current software exists to our knowledge that can quantitatively assist the user in creating their breeding schema. Indeed, if there are three alleles at each locus, when attempting to make a genetically marked, inducible, cre-lox model with T cell specificity as our lab was doing prompting us to create this software, 81 possible combinations exist (3 to the 4th power). With 81 possible males and 81 possible females to mate, 6561 possible pairings exist (81 * 81). Even when users are limited to 4 females and 4 males, as our vignette that comes with our package demonstrates, tradeoffs may exist between the probability of getting the genotype of interest and the probability of producing a high percentage of "close" genotypes. Furthermore, we supply the user helpful information like what the probability would be that no pups are born of the desired genotype in a litter. Our software gives the user all of this information, and we have supplied code that assists user in plotting these tables to help them visualize crosses of interest to help them make decisions.  
 
-More advanced methods make use of the particular amount of dysregulation of each particular gene as well as the underlying known regulatory topology of the network [@RN137; @RN143;@RN141; @RN138;@RN139; @RN136;@RN140; @RN142]. One popular and easy-to-use functional enrichment approach, EnrichR, uses Fisher's exact test to quantitatively average differences across a pathway. The recent Boolean Omics Network Invariant-Time Analysis (BONITA) uses Boolean approximation of flow through a network to give extra weight to elements with the highest impact [@RN81]. While these approaches are suitable for signaling cascades, no methods utilize knowledge of chemical equilibria or rate constants to improve analyses of metabolic pathways.
+Efficient breeding is a scientific imperative: with a limited period of fertility in experimental organisms, users may only have limited attempts with organisms of certain genotypes [@Handelsman:2020, @Murray:2010]. Furthermore, as most research centers pay per diem costs, inefficiency is a large direct cost for many experimentalists, with individual cages often costing hundreds of dollars per year. 
 
-Here we present `fluximplied`: a novel, free and open source software for pathway analysis and hypothesis generation. `fluximplied` uses a manually curated database of rate limiting steps to predict increases or decreases in flux in a known metabolic pathway using transcriptomic data provided by the user.
+# Installation
 
-`fluximplied` can be used to generate hypotheses in the context of metabolic pathway analysis after creating a list of up or down-regulated genes derived from data generated using RNAseq, ATACseq, and other omics technologies. In GSEA, a list of upregulated genes is generated by using a Log2(Fold Change) (LFC) cutoff value to ensure changes are biologically meaningful and an adjusted p value threshold. In glycolysis for example, this type of analysis treats the upregulation of enolase—an enzyme that has little to do with either the regulation or rate of the pathway—the same as phosphofructokinase, which determines the rate and therefore the flux of the pathway as a whole. All else held equal, if the concentration of the RLS increases, the flux through the pathway will increase [@RN74]. Not knowing if all else is held equal, an increase in RLS _implies_ increased flux through the pathway. It is important to note that a singular RLS is rare: more often, the rate is impacted to some degree by more than one enzyme in a pathway. However, more complicated methods like metabolic control analysis are quantitatively complex, tissue dependent, and difficult to integrate with other methods (e.g. RNAseq). Usually one of only a small number of enzymes impact the rate to a meaningful degree, so the model of a singular RLS is still a useful one in analyses and hypothesis generation [@RN70].
-
-Furthermore, traditional enrichment analysis is agnostic of the LFC between conditions (unless an LFC cutoff is used) and thus a gene that has an LFC of 0.5 would be treated the same as a gene that has an LFC of 5, even though one has a fold change of 1.4 and the other 32. While this method is often useful and yields biologically meaningful results, it does not allow the user to more fully interrogate their data.
-
-To that end, we developed `fluximplied` to assist the user in generating hypotheses in metabolic pathway analysis and assess implied flux, an objective task typically requiring a time-consuming, large-scale flux balance analysis. Because the software is included with bioinformatic novices in mind, a web-hosted interactive graphical user interface (GUI) was designed, although the tool remains powerful for all users in its capacity to integrate into computational pipelines. 
-
-`fluximplied` returns a differential expression analysis table of tested RLSs (with assigned adjusted p values and the corresponding pathways) and plots this table for visualization, all of which is downloadable. 
-
-If the user does not have access to their differential expression analyses to feed into the software, they may supply a set of genes to `fluximplied`. In that scenario, since there is not data like P values or LFCs available for generating a hypothesis if the user only supplies a list of genes, `fluximplied` matches any RLS available in such a list to pathways that may be impacted, returning a list of pathways the user may wish to further interrogate. 
-
-# Acknowledgements
-
-The Genotype-Tissue Expression (GTEx) Project was supported by the [Common](https://commonfund.nih.gov/GTEx) of the Office of the Director of the National Institutes of Health, and by NCI, NHGRI, NHLBI, NIDA, NIMH, and NINDS.
+library(devtools)
+install_github('sportiellomike/mousebreedeR',build_vignettes = T)
+library(mousebreedeR)
 
 # References
