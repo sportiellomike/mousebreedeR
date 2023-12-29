@@ -41,4 +41,8 @@ library(devtools)
 install_github('sportiellomike/mousebreedeR',build_vignettes = T)
 library(mousebreedeR)
 
+# Acknowledgements
+
+This work was supported by National Institutes of Health (NIH) National Institute of Allergy and Infectious Diseases Grant P01-AI102851-10. M.S. was supported by NIH/National Heart, Lung, and Blood Institute Training Grant T32-HL066988-20 as well as by NIH Training Grant/National Institute of General Medical Sciences T32GM007356-48.
+
 # References
