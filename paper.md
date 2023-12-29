@@ -1,16 +1,16 @@
 ---
-title: 'MousebreedeR: A novel software to assist in the design of mouse breeding schema for complex genotypes of experimental organisms'
+title: 'MousebreedeR: A novel software to assist in the design of breeding schema for complex genotypes of experimental organisms'
 tags:
   - breeding
   - mouse
   - experimental organism
   - colony management
 authors:
-  - name: Mike Sportiello, PhD
+  - name: Mike Sportiello PhD
     orcid: 0000-0003-1690-8702
     corresponding: true
     affiliation: "1, 2" # (Multiple affiliations must be quoted)
-  - name: David J. Topham, MS/PhD
+  - name: David J. Topham MS/PhD
     orcid: 0000-0002-9435-8673
     affiliation: 1
 
