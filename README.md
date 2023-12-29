@@ -3,7 +3,7 @@
 ## General Info
 MousebreedeR was created by Mike Sportiello to assist scientists in developing the optimal breeding scheme for complex desired genotypes. This is free and open source. 
 
-An acceptable citation follows: Sportiello M and Topham, D. Mouse breeding scheme assistant mousebreedeR assists scientists in establishing complex genotypes. September 2022. https://github.com/sportiellomike/mousebreedeR.
+An acceptable citation follows: Sportiello M and Topham, D. MousebreedeR: A novel software to assist in the design of mouse breeding strategies for complex genotypes of experimental organisms. September 2022. https://github.com/sportiellomike/mousebreedeR.
 
 # The problem
 Often in science, complex genotypes are desired for a particular set of experiments. Especially when more than 2 loci are under consideration, the most efficient way to generate a desired mouse is not always obvious. 
