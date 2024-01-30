@@ -1,4 +1,14 @@
 test_that("fertilization works", {
+  library(mousebreedeR)
+  library(dqrng)
+  library(dplyr)
+  library(gtools)
+  library(tidyverse)
+  library(ggplot2)
+  library(reshape2)
+  library(viridis)
+  library(ggpubr)
+  `%!in%` <- Negate(`%in%`)
 
   # first make the df
   # make example df

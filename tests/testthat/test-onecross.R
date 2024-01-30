@@ -1,5 +1,14 @@
 test_that("one cross function works", {
-
+  library(mousebreedeR)
+  library(dqrng)
+  library(dplyr)
+  library(gtools)
+  library(tidyverse)
+  library(ggplot2)
+  library(reshape2)
+  library(viridis)
+  library(ggpubr)
+  `%!in%` <- Negate(`%in%`)
   # first make the df
   # make example df
   gene1 <- c(0, 0, 1, 0)
