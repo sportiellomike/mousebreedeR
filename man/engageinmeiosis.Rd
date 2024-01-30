@@ -7,13 +7,13 @@
 engageinmeiosis(x)
 }
 \arguments{
-\item{x}{data frame with first columns as genotypes, and last rightmost column as sex column.}
+\item{x}{data frame with first columns as genotypes, and last rightmost column as sex column. Genotype columns should be numeric, and sex column should be M for male or F for female.}
 }
 \value{
 First step of compiling the gametes, which is completed by the next function compilegamets.
 }
 \description{
-Pathway analysis of DESeq2 result or character vector of differentially expressed genes which also plots results.
+The creation of gametes is one of the most beautiful adaptations in all biology. Watch it unfold.
 }
 \examples{
 engageinmeiosis(exampleData)

@@ -10,7 +10,7 @@ summarizefertilization(x)
 \item{x}{the output of fertilize()}
 }
 \value{
-If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+Dataframe with columns to summarize the probabalistic outcome of fertilizations, organized per cross and per locus.
 }
 \description{
 summarizes the overall picture of fertilization.

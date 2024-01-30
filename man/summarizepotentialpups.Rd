@@ -10,7 +10,7 @@ summarizepotentialpups(x)
 \item{x}{the output of fertilize()}
 }
 \value{
-If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+Dataframe with probability information of each corss, organized to per pup created.
 }
 \description{
 Will describe frequency of all potential pups from all potential crosses.

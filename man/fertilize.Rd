@@ -12,10 +12,10 @@ fertilize(malegametes = sperm, femalegametes = eggs)
 \item{femalegametes}{the eggs from spermandeggs() function}
 }
 \value{
-If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+Dataframe of possible pups.
 }
 \description{
-Pathway analysis of DESeq2 result or character vector of differentially expressed genes which also plots results.
+Watch as sperm and egg connect and create a life form from the combination of their genetic material.
 }
 \examples{
 fertilize(malegametes = sperm,femalegametes = eggs)
