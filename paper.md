@@ -35,12 +35,6 @@ Efficient breeding is a scientific imperative: with a limited period of fertilit
 
 While the breeding schema to obtain a litter of full knockout mice from one Wildtype/Wildtype parent and one knockout/knockout parent is straightforward, this is not the case for when one has 4 alleles at 4 loci in 4 separate mice that need to be in the same mouse for a given planned experiment, for example. Furthermore, no current software exists to our knowledge that can quantitatively assist the user in creating their breeding schema. Indeed, if there are 2 alleles at each locus, when attempting to make a genetically marked, inducible, cre-lox model with T cell specificity as our lab was doing, prompting us to create this software, 81 possible combinations exist (3 (AA, Aa, and aa) to the 4th power). With 81 possible males and 81 possible females to mate, 6561 possible pairings exist (81 * 81). Use of this mousebreedeR software to optimize that breeding schema resulted in the publication of a thesis project and manuscript being prepped for submission. 
 
-# Installation
-
-library(devtools)
-install_github('sportiellomike/mousebreedeR',build_vignettes = T)
-library(mousebreedeR)
-
 # Acknowledgements
 
 This work was supported by National Institutes of Health (NIH) National Institute of Allergy and Infectious Diseases Grant P01-AI102851-10. M.S. was supported by NIH/National Heart, Lung, and Blood Institute Training Grant T32-HL066988-20 as well as by NIH Training Grant/National Institute of General Medical Sciences T32GM007356-48.
