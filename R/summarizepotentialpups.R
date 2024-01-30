@@ -3,7 +3,7 @@
 #' @description Will describe frequency of all potential pups from all potential crosses.
 #' @param x the output of fertilize()
 #'
-#' @return If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+#' @return Dataframe with probability information of each corss, organized to per pup created.
 #' @export
 #'
 #' @examples

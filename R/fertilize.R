@@ -1,10 +1,10 @@
 #' fertilize
 #'
-#' @description Pathway analysis of DESeq2 result or character vector of differentially expressed genes which also plots results.
+#' @description Watch as sperm and egg connect and create a life form from the combination of their genetic material.
 #' @param malegametes the sperm from spermandeggs() function 
 #' @param femalegametes the eggs from spermandeggs() function
 #'
-#' @return If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+#' @return Dataframe of possible pups.
 #' @export
 #'
 #' @examples

@@ -3,7 +3,7 @@
 #' @description summarizes the overall picture of fertilization.
 #' @param x the output of fertilize()
 #'
-#' @return If a dataframe was supplied, it should also return a dataframe as well as a bar graph of the enriched pathways.
+#' @return Dataframe with columns to summarize the probabalistic outcome of fertilizations, organized per cross and per locus.
 #' @export
 #'
 #' @examples

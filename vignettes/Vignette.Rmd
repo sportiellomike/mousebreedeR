@@ -10,7 +10,7 @@ vignette: >
 ---
 # Walkthrough
 First we start off by loading all of the necessary libraries.
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(mousebreedeR)
 library(dqrng)
 library(dplyr)
@@ -38,9 +38,10 @@ mouse5 <- c('M', 'M', 'M', 'M','F', 'F', 'F', 'F')
 df <- data.frame(mouse1, mouse2, mouse3, mouse4, mouse5)
 colnames(df) <- c(paste0('gene', 2:dim(df)[2] - 1), 'sex')
 head(df)
-# rename df
 
 # df<- SAVE YOUR DATAFRAME OF AVAILABLE MICE TO THE VARIABLE df. DON'T FORGET TO UPDATED desiredvec BELOW.
+
+# rename df
 exampleData<-df
 ```
 

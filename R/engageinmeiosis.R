@@ -1,7 +1,7 @@
 #' engageinmeiosis
 #'
-#' @description Pathway analysis of DESeq2 result or character vector of differentially expressed genes which also plots results.
-#' @param x data frame with first columns as genotypes, and last rightmost column as sex column. 
+#' @description The creation of gametes is one of the most beautiful adaptations in all biology. Watch it unfold.
+#' @param x data frame with first columns as genotypes, and last rightmost column as sex column. Genotype columns should be numeric, and sex column should be M for male or F for female.
 
 #'
 #' @return  First step of compiling the gametes, which is completed by the next function compilegamets.
