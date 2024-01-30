@@ -8,7 +8,8 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
+# Walkthrough
+First we start off by loading all of the necessary libraries.
 ```{r}
 library(mousebreedeR)
 library(dqrng)
@@ -22,7 +23,11 @@ library(ggpubr)
 `%!in%` <- Negate(`%in%`)
 ```
 
+The package takes a table of mouse genotypes and gives the user breeding strategy. The user supplies a data frame with a numeric number of copies of a certain allele. For example, for the allele A, the genotype AA would have 2 copies, Aa 1 copy, and aa 0 copies. The data frame supplied should use actual numbers, not phrases like "homozygous positive" or "AA," for example. 
 
+In the below code chunk, we can build an example data frame. The last argument `head(df)` will show a properly formatted input to the package, but most people will find it easier to read in a csv.
+
+YOU CAN REPLACE `df` WITH YOUR DATAFRAME OF INTEREST AND RUN THE BELOW CODE. MAKE SURE TO ALSO UPDATE THE `desiredvec` BELOW APPROPRIATELY.
 ```{r}
 # make example df
 mouse1 <- c(0, 0, 0, 1, 0, 0, 0, 1)
@@ -33,8 +38,15 @@ mouse5 <- c('M', 'M', 'M', 'M','F', 'F', 'F', 'F')
 df <- data.frame(mouse1, mouse2, mouse3, mouse4, mouse5)
 colnames(df) <- c(paste0('gene', 2:dim(df)[2] - 1), 'sex')
 head(df)
+# rename df
+
+# df<- SAVE YOUR DATAFRAME OF AVAILABLE MICE TO THE VARIABLE df. DON'T FORGET TO UPDATED desiredvec BELOW.
+exampleData<-df
 ```
 
+As you can see above, the format of the data frame should be as follows: each column is an allele (A or B or C, for example), each row is a mouse. Each cell should have the number of that allele in that mouse. For a mouse that is AABbCcdd, the row should have 2 in the first column, 1 in the second column, 1 in the third column, and 0 in the fourth column. The last column should be the sex of the animal: M for male, and F for female.
+
+In the next code chunk, we set the theme for the plots we make later on.
 ```{r}
 # set ggplothemes
 theme_set(
@@ -52,76 +64,72 @@ theme_set(
     panel.grid.major = element_line(color = 'light grey')
   )
 )
-
-# rename df
-exampleData<-df
-head(exampleData) # look at the top few rows
 ```
 
+First let's look at what happens when each mouse undergoes meiosis and creates gametes. Then, we can look at the possible gametes produced by the mice from the data frame you originally created.
 ```{r}
-# first let's look at what happens when each mouse undergoes meiosis
 meiosisoutput<-engageinmeiosis(exampleData)
-head(meiosisoutput) # as you can see: some of these have an impossible number of alleles (0.5 copies). The next function will fix that by generating gametes that have either 0 or 1 copies of the allele like in real meiosis.
+# head(meiosisoutput) # as you can see: some of these have an impossible number of alleles (0.5 copies). The next function will fix that by generating gametes that have either 0 or 1 copies of the allele like in real meiosis.
 
 compilegametesoutput<-compilegametes(meiosisoutput)
 head(compilegametesoutput)
 ```
 
+Let's look specifically at the genotypes of sperm, and then eggs.
 ```{r}
 # now we can separate them into sperm and eggs
 spermandeggs(x = compilegametesoutput,sex = 'sex')
 head(sperm)
 head(eggs)
 ```
-
+Now we can actually look at the output of fertilization. As you can see in the output of this functioin, we have genotypes, and we recorded who the mom and dad were. We also have a term called `momdad` that essentially saves that crossing (ie it pastes together the mom and the dad).
 ```{r}
-# now we can actually have sex
 fertilizeoutput<-fertilize(malegametes = sperm,
           femalegametes = eggs)
 
-head(fertilizeoutput) # as you can see, we have genotypes, and we recorded who the mom and dad were. We also have a term called momdad that essentially saves that crossing (ie it pastes together the mom and the dad)
+head(fertilizeoutput) 
 ```
 
+Next, we have two ways of summarizing the outcome of the crossing. The first records the distribution of each genotype per momdad (ie per cross) and per gene.
 ```{r}
-# next we have two ways of summarizing the outcome of the crossing.
-# the first records the distribution of each genotype per momdad (ie per cross) and per gene
 summarizefertilizationoutput<-summarizefertilization(fertilizeoutput)
 head(summarizefertilizationoutput)
 ```
 
+The next way to summarize the data is probably more useful, and that's to generate the probability that each potential pup is actually born. Included in this summary are the probabilities a pup of that genotype is not born given a litter size from 1-10 pups. For example, "notthatgenotypeonepup" column gives the probability that, if 1 pup is born, what is the probability that it is not that genotype? 
 ```{r}
-# the next way to summarize the data is probably more useful, and that's to generate the probability that each potential pup is actually born. Included in this summary are the probabilities a pup of that genotype is not born given a litter size from 1-10 pups. For example, "notthatgenotypefivepup" column gives the probability that, if 5 pups are born, what is the probability that none of them are that genotype? You can subtract those columns from 1 to get the probability that at least one pup is that genotype.
 summarizepotentialpupoutput<-summarizepotentialpups(fertilizeoutput)
 head(summarizepotentialpupoutput)
 engageinmeiosis(summarizepotentialpupoutput)
 ```
 
+Let's say you have a specific goal of a genotype you want to create through breeding. Let's say we want homozygous positive mouse at 4 loci: AABBCCDD. Code this by making a vector of your desired genotype (let's call it your `desiredvec`). This desiredvec of genotypes needs to be the same length as the number of gene columns you have in your fertilizeoutput (which will be the same as what you supplied in the beginning to this walkthrough). Use the following words to make your desiredvec: homopos, het, homoneg. 
+
+UPDATE YOUR DESIRED VECTOR BELOW APPROPRIATELY.
 ```{r}
-# let's set a goal
-head(fertilizeoutput)
-desiredvec<-c('homopos', 'homopos', 'homopos', 'homopos') # this desiredvec of genotypes needs to be the same length as the number of gene columns you have in your fertilizeoutput (which will be the same as what you supplied in the beginning to this walkthrough)
+desiredvec<-c('homopos', 'homopos', 'homopos', 'homopos')  # UPDATE THIS desiredvec APPROPRIATELY FOR YOUR NEEDS
 ```
 
+First let's see if we can put all the alleles we want into one mouse in one cross (not necessarily getting 2 alleles (AA) if that's what you want, but getting at least one in as a heterozygote (Aa)). 
 ```{r}
-# first let's see if we can even put all the alleles we want (not necessarily getting 2 alleles if that's what you want, but getting at least one in)
 canwegetalltheallelesfromonecross(x = fertilizeoutput,desiredvector = desiredvec)
 ```
 
+Next we can score each pup. The maximum total score for each pup is 100*(the number of loci or gene columns). Getting the genotype you want is worth 100, and getting a het if you want a homozygous is worth 50. Normalized points are the points the pup earned divided by the total possible points it could have achieved, all times 100.
 ```{r}
-# next we can score each pup. The maximum total score for each pup is 100*(the number of loci or gene columns)
-# Getting the genotype you want is worth 100, and getting a het if you want a homozygous is worth 50.
-# normalized points are the points the pup earned divided by the total possible points it could have achieved.
 pointsperpupoutput<-pointsperpup(x = summarizepotentialpupoutput,desiredvector = desiredvec)
 head(pointsperpupoutput)
-
-whichpairstobreed<-whichpairsshouldibreed(x=pointsperpupoutput,desiredvector = desiredvec)
 ```
 
+Finally, we can then ask the package for advice on which pairs to breed to get the highest possible normalized score.
 ```{r}
-# visualizations
-# You may want to actually visualize this data, which you can do in some ways we recommend below.
+whichpairstobreed<-whichpairsshouldibreed(x=pointsperpupoutput,desiredvector = desiredvec)
+```
+# Visualizations
+## You may want to actually visualize this data, which you can do in some ways we recommend below.
 
-# first we wrangle the data a bit by melting it
+First we wrangle the data a bit by melting it
+```{r}
 meltsummarizefertoutput<-melt(summarizefertilizationoutput,
                               id.vars = c('gene','momdad'),
                               measure.vars = c('freqhomoneg','freqhet','freqhomopos'),
@@ -131,12 +139,11 @@ meltsummarizefertoutput<-melt(summarizefertilizationoutput,
 meltsummarizefertoutput$percent<-(meltsummarizefertoutput$frequency)*100 # we calculate percent from the frequency
 uniquemeltgenes<-unique(meltsummarizefertoutput$gene) # we look at the unique genes you gave earlier for plotting
 
-# rm(plotlist) # we remove this from your environment to make sure the list is empty before putting more things into it
 plotlist<-list() # we make a new list
 ```
 
+This chunk of code will plot separate plots for each gene, and show you the distribution of each genotype (homoneg, het, or homopos) for each crossing.
 ```{r}
-# this chunk of code will plot separate plots for each gene, and show you the distribution of each genotype (homoneg, het, or homopos) for each crossing
 for (w in uniquemeltgenes) {
   subsetmelt<-subset(meltsummarizefertoutput,meltsummarizefertoutput$gene==w)
   print(subsetmelt)
@@ -151,13 +158,16 @@ for (w in uniquemeltgenes) {
   plotlist[[length(plotlist) + 1]] <- plot
 
 }
-# plotlist[1] # we can peek at the first gene by calling the first element of the list
-ggarrange(plotlist = plotlist) # depending on your number of crosses, this plot may be huge, and it may make more sense to look at each element of the list individually as shown in one line above.
 ```
 
+Depending on your number of crosses, this plot may be huge, and it may make more sense to look at each element of the list individually as shown in the first line below (change 1 to 2 etc to go through all the plots.).
 ```{r}
-# this next plot will do the same thing as above plot, but instead of making separate plots per gene, you can make separate plots per cross, which may be easier to read.
+# plotlist[1] # we can peek at the first gene by calling the first element of the list
+ggarrange(plotlist = plotlist) 
+```
 
+This next plot will do the same thing as above plot, but instead of making separate plots per gene, you can make separate plots per cross, which may be easier to read.
+```{r}
 rm(plotlist) # we remove this from your environment to make sure the list is empty before putting more things into it
 plotlist<-list() # we make a new list
 uniquemepairings<-unique(meltsummarizefertoutput$momdad) # pull the unique pairings we have
@@ -178,6 +188,11 @@ for (w in uniquemepairings) {
 }
 ggarrange(plotlist = plotlist)
 ```
+
+```{r}
+sessionInfo()
+```
+
 ```{r}
 ### FIN ###
 ```
