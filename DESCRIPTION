@@ -20,5 +20,9 @@ Imports:
     gtools,
     reshape2,
     viridis
-Suggests: knitr, rmarkdown
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
+Config/testthat/edition: 3
