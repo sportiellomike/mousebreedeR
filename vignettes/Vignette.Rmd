@@ -11,7 +11,7 @@ vignette: >
 # Walkthrough
 First we start off by loading all of the necessary libraries.
 ```{r message=FALSE, warning=FALSE}
-# library(mousebreedeR)
+library(mousebreedeR)
 library(dqrng)
 library(dplyr)
 library(gtools)
