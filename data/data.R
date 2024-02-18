@@ -158,60 +158,60 @@
 
 
 ## -----------------------------------------------------------------------------------------------------------------------------------
-
-Here we can save all the data for minimally reproducible examples for documentation purposes.
-
-usethis::use_data(exampleData)
-
-usethis::use_data(meiosisoutput)
-
-usethis::use_data(compilegametesoutput)
-
-usethis::use_data(sperm)
-
-usethis::use_data(eggs)
-
-usethis::use_data(fertilizeoutput)
-
-usethis::use_data(summarizefertilizationoutput)
-
-usethis::use_data(summarizepotentialpupoutput)
-
-usethis::use_data(desiredvec)
-
-usethis::use_data(canwegetalltheallelesfromonecross)
-
-usethis::use_data(pointsperpupoutput)
-
-usethis::use_data(whichpairstobreed)
-
-
-##########
-
-exampleexampleData<-exampleData
-
-examplemeiosisoutput<-meiosisoutput
-
-examplecompilegametesoutput<-compilegametesoutput
-
-examplesperm<-sperm
-
-exampleeggs<-eggs
-
-examplefertilizeoutput<-fertilizeoutput
-
-examplesummarizefertilizationoutput<-summarizefertilizationoutput
-
-examplesummarizepotentialpupoutput<-summarizepotentialpupoutput
-
-exampledesiredvec<-desiredvec
-
-examplecanwegetalltheallelesfromonecross<-canwegetalltheallelesfromonecross
-
-examplepointsperpupoutput<-pointsperpupoutput
-
-examplewhichpairstobreed<-whichpairstobreed
-#######
+#
+# Here we can save all the data for minimally reproducible examples for documentation purposes.
+#
+# usethis::use_data(exampleData)
+#
+# usethis::use_data(meiosisoutput)
+#
+# usethis::use_data(compilegametesoutput)
+#
+# usethis::use_data(sperm)
+#
+# usethis::use_data(eggs)
+#
+# usethis::use_data(fertilizeoutput)
+#
+# usethis::use_data(summarizefertilizationoutput)
+#
+# usethis::use_data(summarizepotentialpupoutput)
+#
+# usethis::use_data(desiredvec)
+#
+# usethis::use_data(canwegetalltheallelesfromonecross)
+#
+# usethis::use_data(pointsperpupoutput)
+#
+# usethis::use_data(whichpairstobreed)
+#
+#
+# ##########
+#
+# exampleexampleData<-exampleData
+#
+# examplemeiosisoutput<-meiosisoutput
+#
+# examplecompilegametesoutput<-compilegametesoutput
+#
+# examplesperm<-sperm
+#
+# exampleeggs<-eggs
+#
+# examplefertilizeoutput<-fertilizeoutput
+#
+# examplesummarizefertilizationoutput<-summarizefertilizationoutput
+#
+# examplesummarizepotentialpupoutput<-summarizepotentialpupoutput
+#
+# exampledesiredvec<-desiredvec
+#
+# examplecanwegetalltheallelesfromonecross<-canwegetalltheallelesfromonecross
+#
+# examplepointsperpupoutput<-pointsperpupoutput
+#
+# examplewhichpairstobreed<-whichpairstobreed
+# #######
 
 #
 # usethis::use_data(exampleexampleData)
