@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' possiblepointsfromdesiredoutcome(desiredvector = desiredvec)
+#' possiblepointsfromdesiredoutcome(desiredvector = exampledesiredvec)
 
 possiblepointsfromdesiredoutcome<-function(desiredvector = desiredvec){
   possiblepoints<-length(desiredvector)*100

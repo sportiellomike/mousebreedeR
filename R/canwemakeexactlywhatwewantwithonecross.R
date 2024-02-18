@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' canwemakeexactlywhatwewantwithonecross()
+#' canwemakeexactlywhatwewantwithonecross(x=examplefertilizeoutput,desiredvector=exampledesiredvec)
 
 canwemakeexactlywhatwewantwithonecross <-
   function(x = fertilizeoutput,

@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' fertilize(malegametes = sperm,femalegametes = eggs)
+#' fertilize(malegametes = examplesperm,femalegametes = exampleeggs)
 
 fertilize <- function(malegametes = sperm,
                       femalegametes = eggs) {

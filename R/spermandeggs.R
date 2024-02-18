@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' spermandeggs(x=compilegametesoutput,sex='sex')
+#' spermandeggs(x=examplecompilegametesoutput,sex='sex')
 
 spermandeggs <- function(x, sex = 'sex') {
   sperm <- subset(x, x$sex %in% male)

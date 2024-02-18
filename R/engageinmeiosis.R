@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' engageinmeiosis(exampleData)
+#' engageinmeiosis(exampleexampleData)
 
 
 engageinmeiosis <- function(x) {

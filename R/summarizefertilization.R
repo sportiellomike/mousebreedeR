@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' summarizefertilization(fertilizeoutput)
+#' summarizefertilization(examplefertilizeoutput)
 
 
 summarizefertilization <- function(x) {

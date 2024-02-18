@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' whichpairsshouldibreed(x=pointsperpupoutput,desiredvector=desiredvec)
+#' whichpairsshouldibreed(x=examplepointsperpupoutput,desiredvector=exampledesiredvec)
 
 whichpairsshouldibreed<-function(x=pointsperpupoutput,desiredvector=desiredvec){
   maxpoints<-(max(x$points))

@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' canwegetalltheallelesfromonecross(x=fertilizeoutput,desiredvector=desiredvec)
+#' canwegetalltheallelesfromonecross(x=examplefertilizeoutput,desiredvector=exampledesiredvec)
 
 canwegetalltheallelesfromonecross <-
   function(x, desiredvector = desiredvec) {

@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' summarizepotentialpups(fertilizeoutput)
+#' summarizepotentialpups(examplefertilizeoutput)
 
 
 summarizepotentialpups <- function(x) {
