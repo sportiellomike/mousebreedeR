@@ -18,5 +18,5 @@ The possible sperm and eggs you could produce.
 Pulls out sperm and eggs from the gametes created by compilegametes.
 }
 \examples{
-spermandeggs(x=compilegametesoutput,sex='sex')
+spermandeggs(x=examplecompilegametesoutput,sex='sex')
 }

@@ -21,5 +21,5 @@ If a dataframe was supplied, it should also return a dataframe as well as a bar 
 Helps the user determine if what they want is even possible to obtain with one cross.
 }
 \examples{
-canwemakeexactlywhatwewantwithonecross()
+canwemakeexactlywhatwewantwithonecross(x=examplefertilizeoutput,desiredvector=exampledesiredvec)
 }

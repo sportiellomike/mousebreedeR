@@ -18,5 +18,5 @@ Dataframe of possible pups.
 Watch as sperm and egg connect and create a life form from the combination of their genetic material.
 }
 \examples{
-fertilize(malegametes = sperm,femalegametes = eggs)
+fertilize(malegametes = examplesperm,femalegametes = exampleeggs)
 }

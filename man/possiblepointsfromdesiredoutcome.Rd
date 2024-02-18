@@ -16,5 +16,5 @@ The number of possible points your desired pup is worth.
 Calculates how many points any pup could be worth based on how many points your desired pup could be worth.
 }
 \examples{
-possiblepointsfromdesiredoutcome(desiredvector = desiredvec)
+possiblepointsfromdesiredoutcome(desiredvector = exampledesiredvec)
 }

@@ -18,5 +18,5 @@ the number of points
 Part of the internal functions to determine how much points a pup is worth.
 }
 \examples{
-addpoints(x,desiredvector=desiredvec)
+addpoints(x,desiredvector=exampledesiredvec)
 }

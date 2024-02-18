@@ -16,5 +16,5 @@ First step of compiling the gametes, which is completed by the next function com
 The creation of gametes is one of the most beautiful adaptations in all biology. Watch it unfold.
 }
 \examples{
-engageinmeiosis(exampleData)
+engageinmeiosis(exampleexampleData)
 }

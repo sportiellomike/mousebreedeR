@@ -18,5 +18,5 @@ If a dataframe was supplied, it should also return a dataframe as well as a bar 
 This function will tell you if multiple crosses will be required to get the desired mouse.
 }
 \examples{
-canwegetalltheallelesfromonecross(x=fertilizeoutput,desiredvector=desiredvec)
+canwegetalltheallelesfromonecross(x=examplefertilizeoutput,desiredvector=exampledesiredvec)
 }

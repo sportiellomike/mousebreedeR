@@ -16,5 +16,5 @@ a dataframe of gametes
 This finishes the create of the gametes.
 }
 \examples{
-compilegametes(engageinmeiosisoutput)
+compilegametes(exampleengageinmeiosisoutput)
 }

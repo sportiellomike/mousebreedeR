@@ -18,5 +18,5 @@ returns the dataframe which now has points per pups.
 Calculates how many points a potential pup would be worth according to its genotype.
 }
 \examples{
-pointsperpup(x=summarizepotentialpupoutput,desiredvector=desiredvec)
+pointsperpup(x=examplesummarizepotentialpupoutput,desiredvector=exampledesiredvec)
 }

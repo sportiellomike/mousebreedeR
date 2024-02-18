@@ -16,5 +16,5 @@ Dataframe with probability information of each corss, organized to per pup creat
 Will describe frequency of all potential pups from all potential crosses.
 }
 \examples{
-summarizepotentialpups(fertilizeoutput)
+summarizepotentialpups(examplefertilizeoutput)
 }

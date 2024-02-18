@@ -16,5 +16,5 @@ Dataframe with columns to summarize the probabalistic outcome of fertilizations,
 summarizes the overall picture of fertilization.
 }
 \examples{
-summarizefertilization(fertilizeoutput)
+summarizefertilization(examplefertilizeoutput)
 }
