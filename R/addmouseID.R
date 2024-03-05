@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' addmouseID(examplexampleData)
+#' addmouseID(exampleexampleData)
 
 
 addmouseID <- function(x) {
