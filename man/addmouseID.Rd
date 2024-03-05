@@ -16,5 +16,5 @@ The same data frame with mouseID column.
 Adds mouseID to the original dataframe provided
 }
 \examples{
-addmouseID(examplexampleData)
+addmouseID(exampleexampleData)
 }
