@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' compilegametes(exampleengageinmeiosisoutput)
+#' compilegametes(examplemeiosisoutput)
 
 compilegametes <- function(x) {
   my_list <- list()
