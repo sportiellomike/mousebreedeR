@@ -37,9 +37,15 @@ gene5 <- c('M', 'M', 'M', 'M','F', 'F', 'F', 'F')
 df <- data.frame(gene1, gene2, gene3, gene4, gene5)
 colnames(df) <- c(paste0('gene', 2:dim(df)[2] - 1), 'sex')
 head(df)
+```
 
-# df<- SAVE YOUR DATAFRAME OF AVAILABLE MICE TO THE VARIABLE df. DON'T FORGET TO UPDATE desiredvec BELOW.
+SAVE YOUR DATAFRAME OF AVAILABLE MICE TO THE VARIABLE df BELOW. This is how the program knows what mice you have as starting mice. DON'T FORGET TO UPDATE desiredvec BELOW (line 115). You can change the path in the below function to any csv file you want, but it should look like that format. Feel free to add rows and columns as you see fit. 
+```{r}
 
+# df<-read.csv('edit_this_CSV_with_breeder_mice.csv') 
+```
+
+```{r}
 # rename df
 exampleData<-df
 ```
