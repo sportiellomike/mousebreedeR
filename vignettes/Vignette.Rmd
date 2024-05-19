@@ -38,7 +38,7 @@ df <- data.frame(gene1, gene2, gene3, gene4, gene5)
 colnames(df) <- c(paste0('gene', 2:dim(df)[2] - 1), 'sex')
 head(df)
 
-# df<- SAVE YOUR DATAFRAME OF AVAILABLE MICE TO THE VARIABLE df. DON'T FORGET TO UPDATED desiredvec BELOW.
+# df<- SAVE YOUR DATAFRAME OF AVAILABLE MICE TO THE VARIABLE df. DON'T FORGET TO UPDATE desiredvec BELOW.
 
 # rename df
 exampleData<-df
@@ -68,41 +68,41 @@ theme_set(
 
 First let's look at what happens when each mouse undergoes meiosis and creates gametes. Then, we can look at the possible gametes produced by the mice from the data frame you originally created.
 ```{r}
-meiosisoutput<-engageinmeiosis(exampleData)
-# head(meiosisoutput) # as you can see: some of these have an impossible number of alleles (0.5 copies). The next function will fix that by generating gametes that have either 0 or 1 copies of the allele like in real meiosis.
+meiosis_output<-engage_in_meiosis(exampleData)
+# head(meiosis_output) # as you can see: some of these have an impossible number of alleles (0.5 copies). The next function will fix that by generating gametes that have either 0 or 1 copies of the allele like in real meiosis.
 
-compilegametesoutput<-compilegametes(meiosisoutput)
-head(compilegametesoutput)
+compile_gametes_output<-compile_gametes(meiosis_output)
+head(compile_gametes_output)
 ```
 
 Let's look specifically at the genotypes of sperm, and then eggs.
 ```{r}
 # now we can separate them into sperm and eggs
-spermandeggs(x = compilegametesoutput,sex = 'sex')
+sperm_and_eggs(x = compile_gametes_output,sex = 'sex')
 head(sperm)
 head(eggs)
 ```
 Now we can actually look at the output of fertilization. As you can see in the output of this functioin, we have genotypes, and we recorded who the mom and dad were. We also have a term called `momdad` that essentially saves that crossing (ie it pastes together the mom and the dad).
 ```{r}
-fertilizeoutput<-fertilize(malegametes = sperm,
+fertilize_output<-fertilize(malegametes = sperm,
           femalegametes = eggs)
 
-head(fertilizeoutput) 
+head(fertilize_output) 
 ```
 
 Next, we have two ways of summarizing the outcome of the crossing. The first records the distribution of each genotype per momdad (ie per cross) and per gene.
 ```{r}
-summarizefertilizationoutput<-summarizefertilization(fertilizeoutput)
-head(summarizefertilizationoutput)
+summarize_fertilization_output<-summarize_fertilization(fertilize_output)
+head(summarize_fertilization_output)
 ```
 
 The next way to summarize the data is probably more useful, and that's to generate the probability that each potential pup is actually born. Included in this summary are the probabilities a pup of that genotype is not born given a litter size from 1-10 pups. For example, "notthatgenotypeonepup" column gives the probability that, if 1 pup is born, what is the probability that it is not that genotype? 
 ```{r}
-summarizepotentialpupoutput<-summarizepotentialpups(fertilizeoutput)
-head(summarizepotentialpupoutput)
+summarize_potential_pup_output<-summarize_potential_pups(fertilize_output)
+head(summarize_potential_pup_output)
 ```
 
-Let's say you have a specific goal of a genotype you want to create through breeding. Let's say we want homozygous positive mouse at 4 loci: AABBCCDD. Code this by making a vector of your desired genotype (let's call it your `desiredvec`). This desiredvec of genotypes needs to be the same length as the number of gene columns you have in your fertilizeoutput (which will be the same as what you supplied in the beginning to this walkthrough). Use the following words to make your desiredvec: homopos, het, homoneg. 
+Let's say you have a specific goal of a genotype you want to create through breeding. Let's say we want homozygous positive mouse at 4 loci: AABBCCDD. Code this by making a vector of your desired genotype (let's call it your `desiredvec`). This desiredvec of genotypes needs to be the same length as the number of gene columns you have in your fertilize_output (which will be the same as what you supplied in the beginning to this walkthrough). Use the following words to make your desiredvec: homopos, het, homoneg. 
 
 UPDATE YOUR DESIRED VECTOR BELOW APPROPRIATELY.
 ```{r}
@@ -111,25 +111,25 @@ desiredvec<-c('homopos', 'homopos', 'homopos', 'homopos')  # UPDATE THIS desired
 
 First let's see if we can put all the alleles we want into one mouse in one cross (not necessarily getting 2 alleles (AA) if that's what you want, but getting at least one in as a heterozygote (Aa)). 
 ```{r}
-canwegetalltheallelesfromonecross(x = fertilizeoutput,desiredvector = desiredvec)
+can_we_get_all_the_alleles_from_one_cross(x = fertilize_output,desiredvector = desiredvec)
 ```
 
 Next we can score each pup. The maximum total score for each pup is 100*(the number of loci or gene columns). Getting the genotype you want is worth 100, and getting a het if you want a homozygous is worth 50. Normalized points are the points the pup earned divided by the total possible points it could have achieved, all times 100.
 ```{r}
-pointsperpupoutput<-pointsperpup(x = summarizepotentialpupoutput,desiredvector = desiredvec)
+pointsperpupoutput<-points_per_pup(x = summarize_potential_pup_output)
 head(pointsperpupoutput)
 ```
 
 Finally, we can then ask the package for advice on which pairs to breed to get the highest possible normalized score.
 ```{r}
-whichpairstobreed<-whichpairsshouldibreed(x=pointsperpupoutput,desiredvector = desiredvec)
+whichpairstobreed<-which_pairs_should_i_breed(x=pointsperpupoutput,desiredvector = desiredvec)
 ```
 # Visualizations
 ## You may want to actually visualize this data, which you can do in some ways we recommend below.
 
 First we wrangle the data a bit by melting it
 ```{r}
-meltsummarizefertoutput<-melt(summarizefertilizationoutput,
+meltsummarizefertoutput<-melt(summarize_fertilization_output,
                               id.vars = c('gene','momdad'),
                               measure.vars = c('freqhomoneg','freqhet','freqhomopos'),
                               variable.name = 'genotype',

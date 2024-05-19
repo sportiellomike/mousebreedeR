@@ -43,11 +43,11 @@ can_we_get_all_the_alleles_from_one_cross <-
       print(
         'With the genotypes you provided in your desiredvector, it is impossible to put at least one copy in every position in one cross.'
       )
-      return('notonecrossforonecopy')
+      return(invisible('notonecrossforonecopy'))
     }
     if (dim(subsettedforoutput)[1] > 0) {
       print('You can make a mouse with at least one copy of each allele you want with one cross.')
-      return('onecrossforonecopy')
+      return(invisible('onecrossforonecopy'))
     }
 
   }
