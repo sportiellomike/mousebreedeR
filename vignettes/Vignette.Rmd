@@ -160,13 +160,13 @@ for (w in uniquemeltgenes) {
 ```
 
 Depending on your number of crosses, this plot may be huge, and it may make more sense to look at each element of the list individually as shown in the first line below (change 1 to 2 etc to go through all the plots.).
-```{r}
+```{r,fig.width=9,fig.height=60}
 # plotlist[1] # we can peek at the first gene by calling the first element of the list
-ggarrange(plotlist = plotlist) 
+ggarrange(plotlist = plotlist,ncol=1) 
 ```
 
 This next plot will do the same thing as above plot, but instead of making separate plots per gene, you can make separate plots per cross, which may be easier to read.
-```{r}
+```{r,fig.width=9,fig.height=60}
 rm(plotlist) # we remove this from your environment to make sure the list is empty before putting more things into it
 plotlist<-list() # we make a new list
 uniquemepairings<-unique(meltsummarizefertoutput$momdad) # pull the unique pairings we have
@@ -185,7 +185,7 @@ for (w in uniquemepairings) {
   plotlist[[length(plotlist) + 1]] <- plot
 
 }
-ggarrange(plotlist = plotlist)
+ggarrange(plotlist = plotlist,ncol=1)
 ```
 
 ```{r}

@@ -16,9 +16,9 @@ fertilize <- function(malegametes = sperm,
   for (row1 in 1:nrow(sperm)) {
     for (row2 in 1:nrow(eggs)) {
       spermcolnumerics <- as.character(lapply(sperm, FUN = is.numeric))
-      spermindexcolnumerics <- which(spermcolnumerics == T)
+      spermindexcolnumerics <- which(spermcolnumerics)
       eggscolnumerics <- as.character(lapply(eggs, FUN = is.numeric))
-      eggsindexcolnumerics <- which(eggscolnumerics == T)
+      eggsindexcolnumerics <- which(eggscolnumerics)
       spermnumeric <- sperm[spermindexcolnumerics]
       eggsnumeric <- eggs[eggsindexcolnumerics]
 
@@ -48,6 +48,6 @@ fertilize <- function(malegametes = sperm,
     unlist(lapply(strsplit(
       as.character(listofzygotes$momdad), "x"
     ), '[[', 2))
-  fertilizeoutput<<-listofzygotes
+  # fertilizeoutput<<-listofzygotes
   return(listofzygotes)
 }
