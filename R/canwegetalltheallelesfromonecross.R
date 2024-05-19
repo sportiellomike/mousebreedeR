@@ -1,4 +1,4 @@
-#' canwegetalltheallelesfromonecross
+#' can_we_get_all_the_alleles_from_one_cross
 #'
 #' @description This function will tell you if multiple crosses will be required to get the desired mouse.
 #' @param x the output of fertilize()
@@ -8,9 +8,9 @@
 #' @export
 #'
 #' @examples
-#' canwegetalltheallelesfromonecross(x=examplefertilizeoutput,desiredvector=exampledesiredvec)
+#' can_we_get_all_the_alleles_from_one_cross(x=examplefertilizeoutput,desiredvector=exampledesiredvec)
 
-canwegetalltheallelesfromonecross <-
+can_we_get_all_the_alleles_from_one_cross <-
   function(x, desiredvector = desiredvec) {
     newdesiredvector <- c()
     for (v in desiredvector) {

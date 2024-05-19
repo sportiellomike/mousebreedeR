@@ -1,4 +1,4 @@
-#' addpoints
+#' add_points
 #'
 #' @description Part of the internal functions to determine how much points a pup is worth.
 #' @param x dataframe to assess points
@@ -8,9 +8,9 @@
 #' @export
 #'
 #' @examples
-#' addpoints(x,desiredvector=exampledesiredvec)
+#' add_points(x,desiredvector=exampledesiredvec)
 
-addpoints<-function(x,desiredvector=desiredvec){
+add_points<-function(x,desiredvector=desiredvec){
   desiredvector[desiredvector=='homopos']<-2
   desiredvector[desiredvector=='het']<-1
   desiredvector[desiredvector=='homoneg']<-0

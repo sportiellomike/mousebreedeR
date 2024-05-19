@@ -1,4 +1,4 @@
-#' addpoints
+#' %!in%
 #'
 #' @description Negates %in%
 #'
