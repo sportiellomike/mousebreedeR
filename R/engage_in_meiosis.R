@@ -14,7 +14,7 @@
 engage_in_meiosis <- function(x) {
   x <- add_mouse_ID(x)
   colnumerics <- as.character(lapply(x, FUN = is.numeric))
-  indexcolnumerics <- which(colnumerics)
+  indexcolnumerics <- which(colnumerics == T)
   indexcolchar <- which(colnumerics == F)
   gametegenotypes <- x[indexcolnumerics]
   gametemetadata <- x[indexcolchar]
