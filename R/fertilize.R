@@ -16,9 +16,9 @@ fertilize <- function(malegametes = sperm,
   for (row1 in 1:nrow(sperm)) {
     for (row2 in 1:nrow(eggs)) {
       spermcolnumerics <- as.character(lapply(sperm, FUN = is.numeric))
-      spermindexcolnumerics <- which(spermcolnumerics)
+      spermindexcolnumerics <- which(spermcolnumerics == T)
       eggscolnumerics <- as.character(lapply(eggs, FUN = is.numeric))
-      eggsindexcolnumerics <- which(eggscolnumerics)
+      eggsindexcolnumerics <- which(eggscolnumerics == T)
       spermnumeric <- sperm[spermindexcolnumerics]
       eggsnumeric <- eggs[eggsindexcolnumerics]
 
