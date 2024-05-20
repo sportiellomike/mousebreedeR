@@ -1,8 +1,8 @@
 #' fertilize
 #'
 #' @description Watch as sperm and egg connect and create a life form from the combination of their genetic material.
-#' @param malegametes the sperm from spermandeggs() function 
-#' @param femalegametes the eggs from spermandeggs() function
+#' @param malegametes the sperm from sperm_and_eggs() function 
+#' @param femalegametes the eggs from sperm_and_eggs() function
 #'
 #' @return Dataframe of possible pups.
 #' @export
@@ -48,6 +48,6 @@ fertilize <- function(malegametes = sperm,
     unlist(lapply(strsplit(
       as.character(listofzygotes$momdad), "x"
     ), '[[', 2))
-  fertilizeoutput<<-listofzygotes
+  # fertilizeoutput<<-listofzygotes
   return(listofzygotes)
 }

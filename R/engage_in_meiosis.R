@@ -1,4 +1,4 @@
-#' engageinmeiosis
+#' engage_in_meiosis
 #'
 #' @description The creation of gametes is one of the most beautiful adaptations in all biology. Watch it unfold.
 #' @param x data frame with first columns as genotypes, and last rightmost column as sex column. Genotype columns should be numeric, and sex column should be M for male or F for female.
@@ -8,11 +8,11 @@
 #' @export
 #'
 #' @examples
-#' engageinmeiosis(exampleexampleData)
+#' engage_in_meiosis(exampleexampleData)
 
 
-engageinmeiosis <- function(x) {
-  x <- addmouseID(x)
+engage_in_meiosis <- function(x) {
+  x <- add_mouse_ID(x)
   colnumerics <- as.character(lapply(x, FUN = is.numeric))
   indexcolnumerics <- which(colnumerics == T)
   indexcolchar <- which(colnumerics == F)

@@ -1,4 +1,4 @@
-#' summarizefertilization
+#' summarize_fertilization
 #'
 #' @description summarizes the overall picture of fertilization.
 #' @param x the output of fertilize()
@@ -7,10 +7,10 @@
 #' @export
 #'
 #' @examples
-#' summarizefertilization(examplefertilizeoutput)
+#' summarize_fertilization(examplefertilizeoutput)
 
 
-summarizefertilization <- function(x) {
+summarize_fertilization <- function(x) {
   summarylist <- list()
   momdadcol <- which(colnames(x) == 'momdad')
   lastgenecol <- momdadcol - 1

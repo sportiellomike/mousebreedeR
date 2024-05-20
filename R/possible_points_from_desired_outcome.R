@@ -1,4 +1,4 @@
-#' possiblepointsfromdesiredoutcome
+#' possible_points_from_desired_outcome
 #'
 #' @description Calculates how many points any pup could be worth based on how many points your desired pup could be worth.
 #' @param desiredvector character vector of desired genotype.
@@ -7,9 +7,9 @@
 #' @export
 #'
 #' @examples
-#' possiblepointsfromdesiredoutcome(desiredvector = exampledesiredvec)
+#' possible_points_from_desired_outcome(desiredvector = exampledesiredvec)
 
-possiblepointsfromdesiredoutcome<-function(desiredvector = desiredvec){
+possible_points_from_desired_outcome<-function(desiredvector = desiredvec){
   possiblepoints<-length(desiredvector)*100
   return(possiblepoints)
 }

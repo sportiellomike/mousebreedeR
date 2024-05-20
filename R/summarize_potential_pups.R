@@ -1,4 +1,4 @@
-#' summarizepotentialpups
+#' summarize_potential_pups
 #'
 #' @description Will describe frequency of all potential pups from all potential crosses.
 #' @param x the output of fertilize()
@@ -7,10 +7,10 @@
 #' @export
 #'
 #' @examples
-#' summarizepotentialpups(examplefertilizeoutput)
+#' summarize_potential_pups(examplefertilizeoutput)
 
 
-summarizepotentialpups <- function(x) {
+summarize_potential_pups <- function(x) {
   summaryduplicateslist <- list()
   for (q in unique(x$momdad)) {
     y <- subset(x, x$momdad == q)

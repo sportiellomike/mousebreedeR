@@ -1,15 +1,15 @@
-#' compilegametes
+#' compile_gametes
 #'
 #' @description This finishes the create of the gametes.
-#' @param x the output of engageinmeiosis()
+#' @param x the output of engage_in_meiosis()
 #'
 #' @return a dataframe of gametes
 #' @export
 #'
 #' @examples
-#' compilegametes(examplemeiosisoutput)
+#' compile_gametes(examplemeiosisoutput)
 
-compilegametes <- function(x) {
+compile_gametes <- function(x) {
   my_list <- list()
   dfforhets <- data.frame(which(x == 0.5, arr.ind = TRUE))
   indexofmouseidsthatarehets <- dfforhets$row
