@@ -31,7 +31,9 @@ ui <- fluidPage(theme = shinytheme("slate"),
                     h2('Breeder mice upload'),
                     fileInput("file1", "Choose CSV File", accept = ".csv"),
                     h2('Desired genotype'),
-                    textInput('desiredvec_shinyinput',"Input your desired vec here with commas, like this using only some combination of homopos,het, or homoneg: homopos,het,homoneg")
+                    textInput('desiredvec_shinyinput',"Input your desired vec here with commas, like this using only some combination of homopos,het, or homoneg: homopos,het,homoneg"),
+                    h2('Download potential pup table'),
+                    downloadButton("downloadData", "Download potential pup table"),
                     # selectInput("species", "species",
                     #             c('Mouse'='Mmu',
                     #               'Human'='Hsa')),
@@ -62,19 +64,19 @@ ui <- fluidPage(theme = shinytheme("slate"),
                     verbatimTextOutput("desiredvec_processed"),
 
                     h2("Number of crosses required"),
-                    h4('this is can_we_get_all_the_alleles_from_one_cross_shiny'),
+                    # h4('this is can_we_get_all_the_alleles_from_one_cross_shiny'),
                     verbatimTextOutput('can_we_get_all_the_alleles_from_one_cross_shiny'),
 
                     h2("Which mice should be paired?"),
-                    h4('this is points which pairs to breed'),
+                    # h4('this is points which pairs to breed'),
                     verbatimTextOutput(outputId = 'whichpairstobreed_shinyoutput'),
 
                     h2("Potential pups"),
-                    h4("Summarize potential pup output"),
+                    # h4("Summarize potential pup output"),
                     h4(dataTableOutput(outputId = "summarize_potential_pup_output")),
 
                     h2("Fertilization summary"),
-                    h4("Summarize fertilization."),
+                    h4("Distribution per gene per cross."),
                     h4(dataTableOutput(outputId = "summarize_fertilization_output"))
 
 
@@ -159,6 +161,53 @@ server <- function(input, output) {
   })
 
 
+  tabledownload <- reactive({
+    inFile <- input$file1
+    df <- read.csv(inFile$datapath, header = T)
+    # print(df)
+
+    meiosis_output<-engage_in_meiosis(df)
+    compile_gametes_output<-compile_gametes(meiosis_output)
+    sperm_and_eggs(x = compile_gametes_output,sex = 'sex')
+    fertilize_output<-fertilize(malegametes = sperm,
+                                femalegametes = eggs)
+    summarize_potential_pup_output<-summarize_potential_pups(fertilize_output)
+    colindex_summarize_potential_pup_output_shiny<-which(colnames(summarize_potential_pup_output) %in% c(
+      "momdad",
+      # "freqchanceonepup",
+      "percentchanceonepup"
+    ))
+    genecolnames<-colnames(Filter(function(x) any(x %in% c('homoneg','het','homopos')), summarize_potential_pup_output))
+    genecolnames_index<- which(colnames(summarize_potential_pup_output) %in% genecolnames)
+    colindex_summarize_potential_pup_output_shiny_complete<-c(genecolnames_index,colindex_summarize_potential_pup_output_shiny)
+    summarize_potential_pup_output<-summarize_potential_pup_output[,colindex_summarize_potential_pup_output_shiny_complete]
+    colnames(summarize_potential_pup_output)[colnames(summarize_potential_pup_output) %in% c(
+      "momdad",
+      # "freqchanceonepup",
+      "percentchanceonepup"
+    )]<-c(
+      'Mom_x_Dad',
+      'Percent chance to get a pup with genotype'
+    )
+    # summarize_potential_pup_output$`Percent chance to not get desired genotype for a litter of 5`<-100*summarize_potential_pup_output$`Percent chance to not get desired genotype for a litter of 5`
+    summarize_potential_pup_output
+  })
+
+  output$tabledownload <- renderTable({
+
+    tabledownload()
+  })
+
+  output$downloadData  <- downloadHandler(
+    filename = function() {
+      paste('PotentialPupTable', ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(tabledownload(), file, row.names = T)
+    }
+  )
+
+
 
   output$can_we_get_all_the_alleles_from_one_cross_shiny <-renderPrint({
     inFile <- input$file1
@@ -207,16 +256,6 @@ server <- function(input, output) {
 
 
 
-    # output$distPlot <- renderPlot({
-    #     # generate bins based on input$bins from ui.R
-    #     x    <- faithful[, 2]
-    #     bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    #
-    #     # draw the histogram with the specified number of bins
-    #     hist(x, breaks = bins, col = 'darkgray', border = 'white',
-    #          xlab = 'Waiting time to next eruption (in mins)',
-    #          main = 'Histogram of waiting times')
-    # })
 }
 
 # Run the application
