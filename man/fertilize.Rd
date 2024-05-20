@@ -7,9 +7,9 @@
 fertilize(malegametes = sperm, femalegametes = eggs)
 }
 \arguments{
-\item{malegametes}{the sperm from spermandeggs() function}
+\item{malegametes}{the sperm from sperm_and_eggs() function}
 
-\item{femalegametes}{the eggs from spermandeggs() function}
+\item{femalegametes}{the eggs from sperm_and_eggs() function}
 }
 \value{
 Dataframe of possible pups.

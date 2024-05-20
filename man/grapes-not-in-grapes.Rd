@@ -2,7 +2,7 @@
 % Please edit documentation in R/notin.R
 \name{\%!in\%}
 \alias{\%!in\%}
-\title{addpoints}
+\title{%!in%}
 \usage{
 ... \%!in\% NA
 }

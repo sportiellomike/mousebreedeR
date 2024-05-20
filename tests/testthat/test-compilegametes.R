@@ -20,8 +20,8 @@ test_that("gametes compile", {
   colnames(df) <- c(paste0('gene', 2:dim(df)[2] - 1), 'sex')
   exampleData<-df
 
-  meiosisoutput<-engageinmeiosis(exampleData)
-  compilegametesoutput<-compilegametes(meiosisoutput)
+  meiosisoutput<-engage_in_meiosis(exampleData)
+  compilegametesoutput<-compile_gametes(meiosisoutput)
   compilegametesoutput_list<-as.list(compilegametesoutput[1:4])
   lapply(compilegametesoutput_list, floor)
 

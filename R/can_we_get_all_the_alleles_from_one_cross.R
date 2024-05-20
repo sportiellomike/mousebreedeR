@@ -1,4 +1,4 @@
-#' canwegetalltheallelesfromonecross
+#' can_we_get_all_the_alleles_from_one_cross
 #'
 #' @description This function will tell you if multiple crosses will be required to get the desired mouse.
 #' @param x the output of fertilize()
@@ -8,9 +8,9 @@
 #' @export
 #'
 #' @examples
-#' canwegetalltheallelesfromonecross(x=examplefertilizeoutput,desiredvector=exampledesiredvec)
+#' can_we_get_all_the_alleles_from_one_cross(x=examplefertilizeoutput,desiredvector=exampledesiredvec)
 
-canwegetalltheallelesfromonecross <-
+can_we_get_all_the_alleles_from_one_cross <-
   function(x, desiredvector = desiredvec) {
     newdesiredvector <- c()
     for (v in desiredvector) {
@@ -29,9 +29,9 @@ canwegetalltheallelesfromonecross <-
       }
     }
     genecolx<-x[genecols]
-    genecolx[genecolx=='homopos']<-'pos'
-    genecolx[genecolx=='het']<-'pos'
-    genecolx[genecolx=='homoneg']<-'neg'
+    genecolx[genecolx == 'homopos']<-'pos'
+    genecolx[genecolx == 'het']<-'pos'
+    genecolx[genecolx == 'homoneg']<-'neg'
     subsettedforoutput <- genecolx
     for (q in genecols) {
       index <- which(genecols %in% q)
@@ -43,11 +43,11 @@ canwegetalltheallelesfromonecross <-
       print(
         'With the genotypes you provided in your desiredvector, it is impossible to put at least one copy in every position in one cross.'
       )
-      return('notonecrossforonecopy')
+      return(invisible('notonecrossforonecopy'))
     }
     if (dim(subsettedforoutput)[1] > 0) {
       print('You can make a mouse with at least one copy of each allele you want with one cross.')
-      return('onecrossforonecopy')
+      return(invisible('onecrossforonecopy'))
     }
 
   }

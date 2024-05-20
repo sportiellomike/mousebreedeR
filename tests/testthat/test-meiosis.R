@@ -20,7 +20,7 @@ test_that("meiosis works", {
   colnames(df) <- c(paste0('gene', 2:dim(df)[2] - 1), 'sex')
   exampleData<-df
 
-  meiosisoutput<-engageinmeiosis(exampleData)
+  meiosisoutput<-engage_in_meiosis(exampleData)
 
   # Meiosis should halve all of the genotypes to begin with
   expect_equal(sum(colSums(exampleData[1:4])), 2*sum(colSums(meiosisoutput[1:4])))

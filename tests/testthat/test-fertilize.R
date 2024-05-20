@@ -21,9 +21,9 @@ test_that("fertilization works", {
   colnames(df) <- c(paste0('gene', 2:dim(df)[2] - 1), 'sex')
   exampleData<-df
 
-  meiosisoutput<-engageinmeiosis(exampleData)
-  compilegametesoutput<-compilegametes(meiosisoutput)
-  spermandeggs(x = compilegametesoutput,sex = 'sex')
+  meiosisoutput<-engage_in_meiosis(exampleData)
+  compilegametesoutput<-compile_gametes(meiosisoutput)
+  sperm_and_eggs(x = compilegametesoutput,sex = 'sex')
   fertilizeoutput<-fertilize(malegametes = sperm,
                              femalegametes = eggs)
 
