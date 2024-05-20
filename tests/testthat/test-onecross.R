@@ -25,5 +25,5 @@ test_that("one cross function works", {
                              femalegametes = eggs)
   desiredvec<-c('homopos', 'homopos', 'homopos', 'homopos')
 
-  expect_equal(canwegetalltheallelesfromonecross(x = fertilizeoutput,desiredvector = desiredvec), 'onecrossforonecopy')
+  expect_equal(can_we_get_all_the_alleles_from_one_cross(x = fertilizeoutput,desiredvector = desiredvec), 'onecrossforonecopy')
 })
