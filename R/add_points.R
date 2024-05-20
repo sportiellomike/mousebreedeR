@@ -8,7 +8,9 @@
 #' @export
 #'
 #' @examples
-#' add_points(x,desiredvector=exampledesiredvec)
+#' 
+
+# add_points(x,desiredvector=exampledesiredvec)
 
 add_points<-function(x,desiredvector=desiredvec){
   desiredvector[desiredvector == 'homopos']<-2
