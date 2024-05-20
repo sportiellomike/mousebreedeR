@@ -43,3 +43,8 @@ This software is built for people of intermediate R experience. Having said that
 
 # Other
 Any questions? Don't hesitate to reach out: michael_sportiello@urmc.rochester.edu.
+
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/sportiellomike/mousebreedeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sportiellomike/mousebreedeR/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
