@@ -10,12 +10,12 @@
 #' @examples
 #' which_pairs_should_i_breed(x=examplepointsperpupoutput,desiredvector=exampledesiredvec)
 
-which_pairs_should_i_breed<-function(x=pointsperpupoutput,desiredvector=desiredvec){
+which_pairs_should_i_breed<-function(x = pointsperpupoutput,desiredvector = desiredvec){
   maxpoints<-(max(x$points))
-  maxpointindex<-which(x$points==maxpoints)
-  maxpointsub<-subset(x,x$points==maxpoints)
+  maxpointindex<-which(x$points == maxpoints)
+  maxpointsub<-subset(x,x$points == maxpoints)
   maxpercent<-(max(maxpointsub$percentchanceonepup))
-  maxpercentindex<-which(maxpointsub$percentchanceonepup==maxpercent)
+  maxpercentindex<-which(maxpointsub$percentchanceonepup == maxpercent)
 
   crosseswithmaxpoints<-unique(maxpointsub$momdad)
   crosseswithmaxpointsmaxpercent<-unique(maxpointsub$momdad[maxpercentindex])
@@ -25,7 +25,7 @@ which_pairs_should_i_breed<-function(x=pointsperpupoutput,desiredvector=desiredv
   print(crosseswithmaxpointsmaxpercent)
   print('which gives you the following percent chance of making that pup:')
   print(maxpercent)
-  if (can_we_get_all_the_alleles_from_one_cross(x = fertilize_output,desiredvector)=='notonecrossforonecopy') {
+  if (can_we_get_all_the_alleles_from_one_cross(x = fertilize_output,desiredvector) == 'notonecrossforonecopy') {
     print('You cannot get all the alleles you want into one mouse with one cross (even as a heterozygote), so you should make crosses from the list above that get as many alleles into the same pup as possible, and eventually cross those pups together.')
   }
   return(crosseswithmaxpointsmaxpercent)

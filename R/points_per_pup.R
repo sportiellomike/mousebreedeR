@@ -10,7 +10,7 @@
 #' @examples
 #' points_per_pup(x=examplesummarizepotentialpupoutput,desiredvector=exampledesiredvec)
 
-points_per_pup<-function(x,desiredvector=desiredvec){
+points_per_pup<-function(x,desiredvector = desiredvec){
   genecols <- c()
   for (t in colnames(x)) {
     if (isTRUE(any(x[t] == genotypevalschar))) {
@@ -18,12 +18,12 @@ points_per_pup<-function(x,desiredvector=desiredvec){
     }
   }
   genecolx<-x[genecols]
-  genecolx[genecolx=='homopos']<-2
-  genecolx[genecolx=='het']<-1
-  genecolx[genecolx=='homoneg']<-0
+  genecolx[genecolx == 'homopos']<-2
+  genecolx[genecolx == 'het']<-1
+  genecolx[genecolx == 'homoneg']<-0
   genecolx <- as.data.frame(lapply(genecolx,as.numeric))
-  genecolx$possiblepoints<- apply(X=genecolx,MARGIN = 1,possible_points_from_desired_outcome)
-  genecolx$points <- apply(X=genecolx,MARGIN = 1,add_points)
+  genecolx$possiblepoints<- apply(X = genecolx,MARGIN = 1,possible_points_from_desired_outcome)
+  genecolx$points <- apply(X = genecolx,MARGIN = 1,add_points)
   genecolx$normalizedpoints<- 100*(genecolx$points / genecolx$possiblepoints)
   y<-cbind(genecolx,x[,!names(x)%in%genecols])
   return(y)

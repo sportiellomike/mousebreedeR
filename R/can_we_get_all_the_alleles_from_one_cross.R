@@ -29,9 +29,9 @@ can_we_get_all_the_alleles_from_one_cross <-
       }
     }
     genecolx<-x[genecols]
-    genecolx[genecolx=='homopos']<-'pos'
-    genecolx[genecolx=='het']<-'pos'
-    genecolx[genecolx=='homoneg']<-'neg'
+    genecolx[genecolx == 'homopos']<-'pos'
+    genecolx[genecolx == 'het']<-'pos'
+    genecolx[genecolx == 'homoneg']<-'neg'
     subsettedforoutput <- genecolx
     for (q in genecols) {
       index <- which(genecols %in% q)
