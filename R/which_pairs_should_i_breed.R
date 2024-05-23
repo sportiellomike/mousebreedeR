@@ -26,7 +26,7 @@ which_pairs_should_i_breed<-function(x = pointsperpupoutput,desiredvector = desi
   print(crosseswithmaxpointsmaxpercent)
   print('which gives you the following percent chance of making that pup ideal for breeding (preferring homopos over het):')
   print(maxpercent)
-  if (can_we_get_all_the_alleles_from_one_cross(x = fertilize_output,desiredvector) == 'notonecrossforonecopy') {
+  if (can_we_get_all_the_alleles_from_one_cross(x = fertilize_output,desiredvector=desiredvec) == 'notonecrossforonecopy') {
     print('You cannot get all the alleles you want into one mouse with one cross (even as a heterozygote), so you should make crosses from the list above that get as many alleles into the same pup as possible, and eventually cross those pups together.')
   }
   # return(crosseswithmaxpointsmaxpercent)
