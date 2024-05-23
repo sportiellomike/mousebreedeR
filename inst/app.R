@@ -120,27 +120,12 @@ server <- function(input, output) {
       "percenthet",
       "percenthomopos",
       "gene",
-      # "mom",
-      # "dad",
       "momdad"
     ))
     summarize_fertilization_shinyoutput<-summarize_fertilization_shinyoutput[,colindex_fertshiny]
     colnames(summarize_fertilization_shinyoutput)<-c('Percent HomoNeg','Percent Het','Percent HomoPos','Gene','Mom_x_Dad')
-
-    # momdad_split<-function(MomDadColTosplit){
-    #   strsplit(x = MomDadColTosplit,split = "x",)
-    # }
-    # sapply(summarize_fertilization_shinyoutput$Mom_x_Dad,FUN = momdad_split)[1]
-    #
-    #
-    # unlist(lapply(strsplit(as.character(summarize_fertilization_shinyoutput$Mom_x_Dad), "&auty="), '[[', 1))
-
-    # sub("x.*", "", summarize_fertilization_shinyoutput$Mom_x_Dad)
-    summarize_fertilization_shinyoutput$Mom<-vapply(strsplit(summarize_fertilization_shinyoutput$Mom_x_Dad, "x", fixed = F), "[", "", 1)
-    summarize_fertilization_shinyoutput$Dad<-vapply(strsplit(summarize_fertilization_shinyoutput$Mom_x_Dad, "x", fixed = F), "[", "", 2)
     summarize_fertilization_shinyoutput
   })
-
 
 
   output$summarize_potential_pup_output <-renderDataTable({
@@ -244,20 +229,26 @@ server <- function(input, output) {
 
 
   output$whichpairstobreed_shinyoutput <-renderPrint({
+
     inFile <- input$file1
     df <- read.csv(inFile$datapath, header = T)
     # print(df)
-    desiredvec <- unlist(strsplit(input$desiredvec_shinyinput,","))
 
     meiosis_output<-engage_in_meiosis(df)
     compile_gametes_output<-compile_gametes(meiosis_output)
     sperm_and_eggs(x = compile_gametes_output,sex = 'sex')
     fertilize_output<-fertilize(malegametes = sperm,
                                 femalegametes = eggs)
+
+
+    # cat("As atomic vector:\n")
+    # print(x)
+    desiredvec_new<- unlist(strsplit(input$desiredvec_shinyinput,","))
+    # can_we_get_all_the_alleles_from_one_cross(x = fertilize_output,desiredvector = desiredvec_processed_x)
     summarize_potential_pup_output<-summarize_potential_pups(fertilize_output)
-    pointsperpupoutput<-points_per_pup(x = summarize_potential_pup_output,desiredvector = desiredvec)
-    which_pairs_should_i_breed_output<- which_pairs_should_i_breed(x=pointsperpupoutput,desiredvector = unlist(strsplit(input$desiredvec_shinyinput,",")))
-    return(which_pairs_should_i_breed_output)
+    pointsperpupoutput<-points_per_pup(x = summarize_potential_pup_output,desiredvector = desiredvec_new)
+    # return(desiredvec)
+    which_pairs_should_i_breed(x=pointsperpupoutput,desiredvector = desiredvec_new)
   })
 
 
