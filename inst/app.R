@@ -262,41 +262,17 @@ server <- function(input, output) {
   # })
 
   output$whichpairstobreed_shinyoutput<- renderPrint({
-    req(input$desiredvec_shinyinput)
-    req(input$file1)
     desiredvec<-unlist(strsplit(input$desiredvec_shinyinput,","))
-
     inFile <- input$file1
     df <- read.csv(inFile$datapath, header = T)
-    # print(df)
-
-    meiosis_output<-engage_in_meiosis(df)
-    compile_gametes_output<-compile_gametes(meiosis_output)
+    meiosis_output<-engage_in_meiosis(x = df)
+    compile_gametes_output<-compile_gametes(x = meiosis_output)
     sperm_and_eggs(x = compile_gametes_output,sex = 'sex')
-    fertilize_output<-fertilize(malegametes = sperm,
-                                femalegametes = eggs)
-    summarize_potential_pup_output<-summarize_potential_pups(fertilize_output)
-    colindex_summarize_potential_pup_output_shiny<-which(colnames(summarize_potential_pup_output) %in% c(
-      "momdad",
-      # "freqchanceonepup",
-      "percentchanceonepup"
-    ))
-    genecolnames<-colnames(Filter(function(x) any(x %in% c('homoneg','het','homopos')), summarize_potential_pup_output))
-    genecolnames_index<- which(colnames(summarize_potential_pup_output) %in% genecolnames)
-    colindex_summarize_potential_pup_output_shiny_complete<-c(genecolnames_index,colindex_summarize_potential_pup_output_shiny)
-    summarize_potential_pup_output<-summarize_potential_pup_output[,colindex_summarize_potential_pup_output_shiny_complete]
-    colnames(summarize_potential_pup_output)[colnames(summarize_potential_pup_output) %in% c(
-      "momdad",
-      # "freqchanceonepup",
-      "percentchanceonepup"
-    )]<-c(
-      'Mom_x_Dad',
-      'Percent chance to get a pup with genotype'
-    )
-    # summarize_potential_pup_output$`Percent chance to not get desired genotype for a litter of 5`<-100*summarize_potential_pup_output$`Percent chance to not get desired genotype for a litter of 5`
-
-    # summarize_potential_pup_output
-    points_per_pup(x = summarize_potential_pup_output,desiredvector = desiredvec)
+    fertilize_output<-fertilize(malegametes = sperm,femalegametes = eggs)
+    summarize_potential_pup_output<-summarize_potential_pups(x = fertilize_output)
+    pointsperpupoutput<-points_per_pup(summarize_potential_pup_output,desiredvector = desiredvec)
+    which_pairs_should_i_breed_output<-which_pairs_should_i_breed(pointsperpupoutput,desiredvector = desiredvec)
+    which_pairs_should_i_breed_output
 
   })
 

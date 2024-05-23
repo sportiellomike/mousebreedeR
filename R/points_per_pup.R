@@ -22,7 +22,7 @@ points_per_pup<-function(x,desiredvector = desiredvec){
   genecolx[genecolx == 'het']<-1
   genecolx[genecolx == 'homoneg']<-0
   genecolx <- as.data.frame(lapply(genecolx,as.numeric))
-  genecolx$possiblepoints<- apply(X = genecolx,MARGIN = 1,possible_points_from_desired_outcome,desiredvector=desiredvec)
+  genecolx$possiblepoints<- apply(X = genecolx,MARGIN = 1,possible_points_from_desired_outcome)
   genecolx$points <- apply(X = genecolx,MARGIN = 1,add_points)
   genecolx$normalizedpoints<- 100*(genecolx$points / genecolx$possiblepoints)
   y<-cbind(genecolx,x[,!names(x)%in%genecols])
