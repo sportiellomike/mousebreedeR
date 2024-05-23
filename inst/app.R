@@ -243,38 +243,24 @@ server <- function(input, output) {
   })
 
 
-  # output$whichpairstobreed_shinyoutput <-renderPrint({
-  #   desiredvec <<- unlist(strsplit(input$desiredvec_shinyinput,","))
-  #   inFile <- input$file1
-  #   df <- read.csv(inFile$datapath, header = T)
-  #   # print(df)
-  #   desiredvec_whichpairstobreed_shinyoutput <- unlist(strsplit(input$desiredvec_shinyinput,","))
-  #
-  #   meiosis_output<-engage_in_meiosis(df)
-  #   compile_gametes_output<-compile_gametes(meiosis_output)
-  #   sperm_and_eggs(x = compile_gametes_output,sex = 'sex')
-  #   fertilize_output<-fertilize(malegametes = sperm,
-  #                               femalegametes = eggs)
-  #   summarize_potential_pup_output<-summarize_potential_pups(fertilize_output)
-  #   pointsperpupoutput<-points_per_pup(x = summarize_potential_pup_output,desiredvector = desiredvec_whichpairstobreed_shinyoutput)
-  #   which_pairs_should_i_breed_output<- which_pairs_should_i_breed(x=pointsperpupoutput,desiredvector = desiredvec_whichpairstobreed_shinyoutput)
-  #   # return(which_pairs_should_i_breed_output)
-  # })
-
-  output$whichpairstobreed_shinyoutput<- renderPrint({
-    desiredvec<-unlist(strsplit(input$desiredvec_shinyinput,","))
+  output$whichpairstobreed_shinyoutput <-renderPrint({
     inFile <- input$file1
     df <- read.csv(inFile$datapath, header = T)
-    meiosis_output<-engage_in_meiosis(x = df)
-    compile_gametes_output<-compile_gametes(x = meiosis_output)
-    sperm_and_eggs(x = compile_gametes_output,sex = 'sex')
-    fertilize_output<-fertilize(malegametes = sperm,femalegametes = eggs)
-    summarize_potential_pup_output<-summarize_potential_pups(x = fertilize_output)
-    pointsperpupoutput<-points_per_pup(summarize_potential_pup_output,desiredvector = desiredvec)
-    which_pairs_should_i_breed_output<-which_pairs_should_i_breed(pointsperpupoutput,desiredvector = desiredvec)
-    which_pairs_should_i_breed_output
+    # print(df)
+    desiredvec <- unlist(strsplit(input$desiredvec_shinyinput,","))
 
+    meiosis_output<-engage_in_meiosis(df)
+    compile_gametes_output<-compile_gametes(meiosis_output)
+    sperm_and_eggs(x = compile_gametes_output,sex = 'sex')
+    fertilize_output<-fertilize(malegametes = sperm,
+                                femalegametes = eggs)
+    summarize_potential_pup_output<-summarize_potential_pups(fertilize_output)
+    pointsperpupoutput<-points_per_pup(x = summarize_potential_pup_output,desiredvector = desiredvec)
+    which_pairs_should_i_breed_output<- which_pairs_should_i_breed(x=pointsperpupoutput,desiredvector = unlist(strsplit(input$desiredvec_shinyinput,",")))
+    return(which_pairs_should_i_breed_output)
   })
+
+
 
 
 
