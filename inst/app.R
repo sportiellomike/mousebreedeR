@@ -214,13 +214,13 @@ server <- function(input, output) {
     df <- read.csv(inFile$datapath, header = T)
     # print(df)
 
-    meiosis_output<-engage_in_meiosis(df)
-    compile_gametes_output<-compile_gametes(meiosis_output)
+    meiosis_output<<-engage_in_meiosis(df)
+    compile_gametes_output<<-compile_gametes(meiosis_output)
     sperm_and_eggs(x = compile_gametes_output,sex = 'sex')
-    fertilize_output<-fertilize(malegametes = sperm,
+    fertilize_output<<-fertilize(malegametes = sperm,
                                 femalegametes = eggs)
 
-    desiredvec<- unlist(strsplit(input$desiredvec_shinyinput,","))
+    desiredvec<<- unlist(strsplit(input$desiredvec_shinyinput,","))
     # cat("As atomic vector:\n")
     # print(x)
 
@@ -234,19 +234,19 @@ server <- function(input, output) {
     df <- read.csv(inFile$datapath, header = T)
     # print(df)
 
-    meiosis_output<-engage_in_meiosis(df)
-    compile_gametes_output<-compile_gametes(meiosis_output)
+    meiosis_output<<-engage_in_meiosis(df)
+    compile_gametes_output<<-compile_gametes(meiosis_output)
     sperm_and_eggs(x = compile_gametes_output,sex = 'sex')
-    fertilize_output<-fertilize(malegametes = sperm,
+    fertilize_output<<-fertilize(malegametes = sperm,
                                 femalegametes = eggs)
 
 
     # cat("As atomic vector:\n")
     # print(x)
-    desiredvec_new<- unlist(strsplit(input$desiredvec_shinyinput,","))
+    desiredvec_new<<- unlist(strsplit(input$desiredvec_shinyinput,","))
     # can_we_get_all_the_alleles_from_one_cross(x = fertilize_output,desiredvector = desiredvec_processed_x)
-    summarize_potential_pup_output<-summarize_potential_pups(fertilize_output)
-    pointsperpupoutput<-points_per_pup(x = summarize_potential_pup_output,desiredvector = desiredvec_new)
+    summarize_potential_pup_output<<-summarize_potential_pups(fertilize_output)
+    pointsperpupoutput<<-points_per_pup(x = summarize_potential_pup_output,desiredvector = desiredvec_new)
     # return(desiredvec)
     which_pairs_should_i_breed(x=pointsperpupoutput,desiredvector = desiredvec_new)
   })
