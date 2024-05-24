@@ -18,7 +18,9 @@ Imports:
     ggpubr,
     gtools,
     reshape2,
-    viridis
+    viridis,
+    shiny,
+    shinythemes
 Suggests: 
     knitr,
     rmarkdown,

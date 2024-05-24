@@ -8,7 +8,19 @@
 #' @export
 #'
 #' @examples
-#' engage_in_meiosis(exampleexampleData)
+#' library(shiny)
+#' library(shinythemes)
+#' library(mousebreedeR)
+#' library(dqrng)
+#' library(dplyr)
+#' library(gtools)
+#' library(ggplot2)
+#' library(reshape2)
+#' library(viridis)
+#' library(ggpubr)
+#' 
+#' head(exampleexampleData) # let's take a look at our example data
+#' engage_in_meiosis(exampleexampleData) # Check it out! We have begun the process of engaging in meiosis.
 
 
 engage_in_meiosis <- function(x) {

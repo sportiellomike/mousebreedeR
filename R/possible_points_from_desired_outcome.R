@@ -7,7 +7,19 @@
 #' @export
 #'
 #' @examples
-#' possible_points_from_desired_outcome(desiredvector = exampledesiredvec)
+#' library(shiny)
+#' library(shinythemes)
+#' library(mousebreedeR)
+#' library(dqrng)
+#' library(dplyr)
+#' library(gtools)
+#' library(ggplot2)
+#' library(reshape2)
+#' library(viridis)
+#' library(ggpubr)
+
+#' desiredvec<-c('het','het','het','het') # the genotype of your desired mouse
+#' possible_points_from_desired_outcome(desiredvector = exampledesiredvec) # to use in scoring system
 
 possible_points_from_desired_outcome<-function(desiredvector = desiredvec){
   possiblepoints<-length(desiredvector)*100

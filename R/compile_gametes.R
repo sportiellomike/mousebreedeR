@@ -7,7 +7,20 @@
 #' @export
 #'
 #' @examples
-#' compile_gametes(examplemeiosisoutput)
+#' library(shiny)
+#' library(shinythemes)
+#' library(mousebreedeR)
+#' library(dqrng)
+#' library(dplyr)
+#' library(gtools)
+#' library(ggplot2)
+#' library(reshape2)
+#' library(viridis)
+#' library(ggpubr)
+#' 
+#' head(exampleexampleData) # let's take a look at our example data
+#' engage_in_meiosis_output_example<-engage_in_meiosis(exampleexampleData) # Check it out! We can look the gene makeup of eggs and sperm now
+#' compile_gametes(engage_in_meiosis_output_example) # Meiosis step completed. Here are all the possible gametes from our breeder mice.
 
 compile_gametes <- function(x) {
   my_list <- list()
@@ -57,7 +70,7 @@ compile_gametes <- function(x) {
   my_list <- bind_rows(my_list)
   my_list[my_list == 0.5] <- NA
   my_list <- na.omit(my_list)
-  my_list <- rbind(my_list, subset(x, x$mouseID %!in% my_list$mouseID))
+  my_list <- rbind(my_list, subset(x, x$mouseID %notin% my_list$mouseID))
   my_list$longID <- rownames(my_list)
   return(my_list)
 }
