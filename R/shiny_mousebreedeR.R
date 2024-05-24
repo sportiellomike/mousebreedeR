@@ -59,7 +59,7 @@ ui <- fluidPage(theme = shinytheme("slate"),
 
                     h2("Breeder Mice"),
                     h4("This is the CSV you supplied to us. Make sure the column on the right is 'sex' and the columns to the left are your gene columns. There should not be a separate column for row names in your CSV."),
-                    h4(dataTableOutput(outputId = 'suppliedCSV')),
+                    h4(DT::DTOutput(outputId = 'suppliedCSV')),
 
                     h2("Desiredvec"),
                     h4('This is the desiredvec you entered to the left. Make sure the only values here are homopos, homoneg, or het separated by commas. Each gene in your supplied csv should have a desired geneotype at each locus (for example, 3 gene columns should have 3 entries to the left separated by commas).'),
@@ -75,11 +75,11 @@ ui <- fluidPage(theme = shinytheme("slate"),
 
                     h2("Potential pups"),
                     # h4("Summarize potential pup output"),
-                    h4(dataTableOutput(outputId = "summarize_potential_pup_output")),
+                    h4(DT::DTOutput(outputId = "summarize_potential_pup_output")),
 
                     h2("Fertilization summary"),
                     h4("Distribution per gene per cross."),
-                    h4(dataTableOutput(outputId = "summarize_fertilization_output"))
+                    h4(DT::DTOutput(outputId = "summarize_fertilization_output"))
 
 
 
@@ -108,7 +108,7 @@ server <- function(input, output) {
   }
   )
 
-  output$suppliedCSV <-renderDataTable({
+  output$suppliedCSV <-DT::renderDT({
     req(input$desiredvec_shinyinput)
     req(input$file1)
     inFile <- input$file1
@@ -118,7 +118,7 @@ server <- function(input, output) {
   )
 
 
-  output$summarize_fertilization_output <-renderDataTable({
+  output$summarize_fertilization_output <-DT::renderDT({
     req(input$desiredvec_shinyinput)
     req(input$file1)
     inFile <- input$file1
@@ -150,7 +150,7 @@ server <- function(input, output) {
   })
 
 
-  output$summarize_potential_pup_output <-renderDataTable({
+  output$summarize_potential_pup_output <-DT::renderDT({
     req(input$desiredvec_shinyinput)
     req(input$file1)
     inFile <- input$file1
