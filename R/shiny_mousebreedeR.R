@@ -18,7 +18,7 @@ library(ggplot2)
 library(reshape2)
 library(viridis)
 library(ggpubr)
-`%!in%` <- Negate(`%in%`)
+`%notin%` <- Negate(`%in%`)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(theme = shinytheme("slate"),

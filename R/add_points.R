@@ -25,6 +25,7 @@
 #' sperm_and_eggs_output_example<-sperm_and_eggs(x=compile_gametes_output_example,sex='sex') # Saves the outputs of which gametes are sperm, and which are eggs.
 #' fertilize_output_example<-fertilize(malegametes = sperm,femalegametes = eggs) # create all potential pups from all possible pairings.
 
+#' desiredvec<-c('het','het','het','het') # the genotype of your desired mouse
 #' summarize_potential_pups_output_example<-summarize_potential_pups(fertilize_output_example) # take a look at the distributions of potential pups
 #' x<-summarize_potential_pups_output_example
 #'   genecols <- c()
