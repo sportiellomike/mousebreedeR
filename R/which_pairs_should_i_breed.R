@@ -24,7 +24,7 @@
 #' compile_gametes_output_example<-compile_gametes(engage_in_meiosis_output_example) # Meiosis step completed. Here are all the possible gametes from our breeder mice.
 #' sperm_and_eggs_output_example<-sperm_and_eggs(x=compile_gametes_output_example,sex='sex') # Saves the outputs of which gametes are sperm, and which are eggs.
 #' fertilize_output_example<-fertilize(malegametes = sperm,femalegametes = eggs) # create all potential pups from all possible pairings.
-
+#' fertilize_output<-fertilize_output_example
 #' desiredvec<-c('het','het','het','het') # the genotype of your desired mouse
 #' summarize_potential_pups_output<-summarize_potential_pups(fertilize_output_example) # take a look at the distributions of potential pups
 
