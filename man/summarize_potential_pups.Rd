@@ -16,5 +16,20 @@ Dataframe with probability information of each corss, organized to per pup creat
 Will describe frequency of all potential pups from all potential crosses.
 }
 \examples{
-summarize_potential_pups(examplefertilizeoutput)
+library(shiny)
+library(shinythemes)
+library(mousebreedeR)
+library(dqrng)
+library(dplyr)
+library(gtools)
+library(ggplot2)
+library(reshape2)
+library(viridis)
+library(ggpubr)
+head(exampleexampleData) # let's take a look at our example data
+engage_in_meiosis_output_example<-engage_in_meiosis(exampleexampleData) # Check it out! We can look the gene makeup of eggs and sperm now
+compile_gametes_output_example<-compile_gametes(engage_in_meiosis_output_example) # Meiosis step completed. Here are all the possible gametes from our breeder mice.
+sperm_and_eggs_output_example<-sperm_and_eggs(x=compile_gametes_output_example,sex='sex') # Saves the outputs of which gametes are sperm, and which are eggs.
+fertilize_output_example<-fertilize(malegametes = sperm,femalegametes = eggs) # create all potential pups from all possible pairings.
+summarize_potential_pups(fertilize_output_example) # take a look at the distributions of potential pups
 }

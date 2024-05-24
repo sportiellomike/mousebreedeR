@@ -20,7 +20,8 @@ Imports:
     reshape2,
     viridis,
     shiny,
-    shinythemes
+    shinythemes,
+    tidyverse
 Suggests: 
     knitr,
     rmarkdown,

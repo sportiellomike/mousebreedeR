@@ -16,5 +16,17 @@ First step of compiling the gametes, which is completed by the next function com
 The creation of gametes is one of the most beautiful adaptations in all biology. Watch it unfold.
 }
 \examples{
-engage_in_meiosis(exampleexampleData)
+library(shiny)
+library(shinythemes)
+library(mousebreedeR)
+library(dqrng)
+library(dplyr)
+library(gtools)
+library(ggplot2)
+library(reshape2)
+library(viridis)
+library(ggpubr)
+
+head(exampleexampleData) # let's take a look at our example data
+engage_in_meiosis(exampleexampleData) # Check it out! We have begun the process of engaging in meiosis.
 }

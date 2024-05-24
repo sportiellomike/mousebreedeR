@@ -16,5 +16,17 @@ The same data frame with mouseID column.
 Adds mouseID to the original dataframe provided
 }
 \examples{
-add_mouse_ID(exampleexampleData)
+library(shiny)
+library(shinythemes)
+library(mousebreedeR)
+library(dqrng)
+library(dplyr)
+library(gtools)
+library(ggplot2)
+library(reshape2)
+library(viridis)
+library(ggpubr)
+
+head(exampleexampleData) # let's take a look at some example data before we run add_mouse_ID()
+add_mouse_ID(exampleexampleData) # check it out! We have a new column!
 }

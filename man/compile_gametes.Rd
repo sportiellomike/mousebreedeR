@@ -16,5 +16,18 @@ a dataframe of gametes
 This finishes the create of the gametes.
 }
 \examples{
-compile_gametes(examplemeiosisoutput)
+library(shiny)
+library(shinythemes)
+library(mousebreedeR)
+library(dqrng)
+library(dplyr)
+library(gtools)
+library(ggplot2)
+library(reshape2)
+library(viridis)
+library(ggpubr)
+
+head(exampleexampleData) # let's take a look at our example data
+engage_in_meiosis_output_example<-engage_in_meiosis(exampleexampleData) # Check it out! We can look the gene makeup of eggs and sperm now
+compile_gametes(engage_in_meiosis_output_example) # Meiosis step completed. Here are all the possible gametes from our breeder mice.
 }
