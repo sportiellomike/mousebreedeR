@@ -27,7 +27,7 @@ To install, go to Rstudio or the R command line and run the following code.
 `library(mousebreedeR)`
 
 # How to actually run the software
-Generally, I'd recommend just using the GUI unless you have a good reason not to https://sportiellomike.shinyapps.io/mousebreedeR/) since it can be used by true novices, and is the quickest way to get results.
+Generally, I'd recommend just using the GUI unless you have a good reason not to (https://sportiellomike.shinyapps.io/mousebreedeR/) since it can be used by true novices, and is the quickest way to get results.
 
 This pacakge/vignette is built for people of intermediate R experience. Having said that, so long as you follow these instructions very carefully below, anyone should be able to use it. 
 
