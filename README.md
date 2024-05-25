@@ -14,7 +14,7 @@ MousebreedeR takes into account the exact genotypes the user has available in th
 The attached vignette walks the user through all of mousebreedeR's functionality and visualiztion recommendations to make the best possible choice to conduct the most efficient science possible. 
 
 # How to install
-You don't __need__ to install anything. You can use the GUI found at https://sportiellomike.shinyapps.io/mousebreedeR/[https://sportiellomike.shinyapps.io/mousebreedeR/]. However, you can also download the package and vignette that comes with it as well.
+You don't __need__ to install anything. You can use the GUI found at [https://sportiellomike.shinyapps.io/mousebreedeR/]. However, you can also download the package and vignette that comes with it as well.
 
 To install, go to Rstudio or the R command line and run the following code.
 
@@ -27,7 +27,7 @@ To install, go to Rstudio or the R command line and run the following code.
 `library(mousebreedeR)`
 
 # How to actually run the software
-Generally, I'd recommend just using the GUI unless you have a good reason not to (https://sportiellomike.shinyapps.io/mousebreedeR/[https://sportiellomike.shinyapps.io/mousebreedeR/]) since it can be used by true novices, and is the quickest way to get results.
+Generally, I'd recommend just using the GUI unless you have a good reason not to [https://sportiellomike.shinyapps.io/mousebreedeR/]) since it can be used by true novices, and is the quickest way to get results.
 
 This pacakge/vignette is built for people of intermediate R experience. Having said that, so long as you follow these instructions very carefully below, anyone should be able to use it. 
 
