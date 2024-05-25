@@ -20,7 +20,7 @@ library(ggpubr)
 `%!in%` <- Negate(`%in%`)
 
 # Define UI for application that draws a histogram
-ui <- fluidPage(theme = shinytheme("slate"),
+ui <- fluidPage(theme = shinytheme("cyborg"),
                 # Application title
                 titlePanel("mousebreedeR"),
 
