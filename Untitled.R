@@ -1,4 +1,4 @@
-#' shiny_mousebreedeR
+#' fertilize
 #'
 #' @description Use the interactive shiny app to run the mousebreedeR software.
 #'
@@ -7,11 +7,21 @@
 #'
 shiny_mousebreedeR <- function() {
   
-  shinyApp(
- 
-    
+  
+  library(shiny)
+  library(shinythemes)
+  library(mousebreedeR)
+  library(dqrng)
+  library(dplyr)
+  library(gtools)
+  library(ggplot2)
+  library(reshape2)
+  library(viridis)
+  library(ggpubr)
+  `%notin%` <- Negate(`%in%`)
+
     # Define UI for application that draws a histogram
-    ui = fluidPage(theme = shinytheme("slate"),
+    ui <- fluidPage(theme = shinytheme("slate"),
                     # Application title
                     titlePanel("mousebreedeR"),
                     
@@ -75,10 +85,10 @@ shiny_mousebreedeR <- function() {
                         
                       )
                     )
-    ),
+    )
     
-    # Define server logic
-    server = function(input, output) {
+    # Define server logic 
+    server <- function(input, output){
       
       # output$newVec <- renderPrint({
       #
@@ -278,5 +288,6 @@ shiny_mousebreedeR <- function() {
       
       
       
-    })
+    }
+    shinyApp(server = server,ui = ui)
 }

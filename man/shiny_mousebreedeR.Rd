@@ -2,7 +2,7 @@
 % Please edit documentation in R/shiny_mousebreedeR.R
 \name{shiny_mousebreedeR}
 \alias{shiny_mousebreedeR}
-\title{fertilize}
+\title{shiny_mousebreedeR}
 \usage{
 shiny_mousebreedeR()
 }
