@@ -21,7 +21,8 @@ Imports:
     viridis,
     shiny,
     shinythemes,
-    tidyverse
+    tidyverse,
+    DT
 Suggests: 
     knitr,
     rmarkdown,
