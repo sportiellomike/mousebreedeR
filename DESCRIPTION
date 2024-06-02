@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Mike Sportiello
 Maintainer: Mike Sportiello <sportiellomike@gmail.com>
 Description: Often when breeding mouse colonies for research purposes, several genes need to be in one mouse for an experiment to work. MousebreedeR recommends a breeding scheme to achieve the desired mouse genotype using a novel scoring method to help guide the user.
-License: CC BY 4.0
+License: MIT
 Encoding: UTF-8
 LazyData: true
 Depends: 
